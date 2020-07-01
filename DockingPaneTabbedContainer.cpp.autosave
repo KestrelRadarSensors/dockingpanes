@@ -17,14 +17,14 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "dockingpanetabbedcontainer.h"
+#include "DockingPaneTabbedContainer.h"
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QWidget>
 #include <QSpacerItem>
 #include <QGridLayout>
 #include <QDebug>
-#include "dockingpanemanager.h"
+#include "DockingPaneManager.h"
 #include <QPaintEvent>
 #include <QPainter>
 #include <QPen>

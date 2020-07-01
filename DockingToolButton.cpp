@@ -17,7 +17,7 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "dockingtoolbutton.h"
+#include "DockingToolButton.h"
 #include <QPainter>
 #include <QImage>
 #include <QDebug>

@@ -23,7 +23,7 @@
 #include "dockingpanebase.h"
 #include <QSplitter>
 
-#include "dockingpanemanager.h"
+#include "DockingPaneManager.h"
 
 class DockingPaneSplitterContainer : public DockingPaneBase
 {

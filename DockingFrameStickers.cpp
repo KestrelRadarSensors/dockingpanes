@@ -17,10 +17,10 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "dockingframestickers.h"
+#include "DockingFrameStickers.h"
 #include <QPainter>
 #include <QDebug>
-#include "dockingpanemanager.h"
+#include "DockingPaneManager.h"
 
 DockingFrameStickers::DockingFrameStickers(QWidget *parent) :
     QWidget(parent)

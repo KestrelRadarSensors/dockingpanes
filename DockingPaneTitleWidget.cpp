@@ -17,7 +17,7 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "dockingpanetitlewidget.h"
+#include "DockingPaneTitleWidget.h"
 #include <QPainter>
 #include <QFont>
 #include <QDebug>
