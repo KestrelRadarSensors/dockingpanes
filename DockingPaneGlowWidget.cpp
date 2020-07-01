@@ -22,7 +22,6 @@
 #include <QPaintEvent>
 #include <QDebug>
 #include <QApplication>
-#include <windows.h>
 #include <QGradient>
 #include <QRadialGradient>
 #include <QLinearGradient>
