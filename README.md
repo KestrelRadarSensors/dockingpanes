@@ -2,7 +2,7 @@
 
 DockingPanes is a library for Qt Widgets that implements docking windows that have the look and feel of Visual Studio.  It provides a simple API which allows an application to make use of docking windows with a few calls.
 
-![Docking panes example](https://imgur.com/kXzwMXm.png)
+![Docking panes example](https://user-images.githubusercontent.com/67605614/86236792-8f2e0a80-bb92-11ea-982c-c66ea48aa4fe.png)
 
 ## Features
 
