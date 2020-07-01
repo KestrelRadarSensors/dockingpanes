@@ -22,7 +22,7 @@
 
 #include <QPushButton>
 #include <QStyleOptionButton>
-#include "dockingpanebase.h"
+#include "DockingPaneBase.h"
 #include "DockingPaneContainer.h"
 #include <QTimer>
 

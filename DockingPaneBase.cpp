@@ -17,7 +17,7 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "dockingpanebase.h"
+#include "DockingPaneBase.h"
 #include <QDebug>
 
 DockingPaneBase::DockingPaneBase(QWidget *parent) :

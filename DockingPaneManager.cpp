@@ -7,7 +7,7 @@
 #include "DockingFrameStickers.h"
 #include "DockingTargetWidget.h"
 #include "DockingPaneClient.h"
-#include "dockingpanebase.h"
+#include "DockingPaneBase.h"
 #include "DockingPaneFlyoutWidget.h"
 #include <QApplication>
 /*

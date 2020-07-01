@@ -20,7 +20,7 @@
 #ifndef DOCKINGPANESPLITTERCONTAINER_H
 #define DOCKINGPANESPLITTERCONTAINER_H
 
-#include "dockingpanebase.h"
+#include "DockingPaneBase.h"
 #include <QSplitter>
 
 #include "DockingPaneManager.h"
