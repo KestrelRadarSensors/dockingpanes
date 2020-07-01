@@ -20,7 +20,7 @@
 #ifndef DOCKINGPANECLIENT_H
 #define DOCKINGPANECLIENT_H
 
-#include "dockingpanebase.h"
+#include "DockingPaneBase.h"
 #include <QGridLayout>
 
 class DockingPaneManager;

@@ -20,10 +20,10 @@
 #ifndef DOCKINGPANESPLITTERCONTAINER_H
 #define DOCKINGPANESPLITTERCONTAINER_H
 
-#include "dockingpanebase.h"
+#include "DockingPaneBase.h"
 #include <QSplitter>
 
-#include "dockingpanemanager.h"
+#include "DockingPaneManager.h"
 
 class DockingPaneSplitterContainer : public DockingPaneBase
 {

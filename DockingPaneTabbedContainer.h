@@ -21,7 +21,7 @@
 #define DOCKINGPANETABBEDCONTAINER_H
 
 #include <QWidget>
-#include "dockingpanecontainer.h"
+#include "DockingPaneContainer.h"
 #include <QStackedWidget>
 #include <QList>
 #include "DockingPaneFlyoutWidget.h"

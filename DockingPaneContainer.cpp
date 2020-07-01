@@ -17,7 +17,7 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "dockingpanecontainer.h"
+#include "DockingPaneContainer.h"
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QWidget>
@@ -25,8 +25,8 @@
 #include <QGridLayout>
 #include <QFrame>
 #include <QDebug>
-#include "dockingpanemanager.h"
-#include "dockingtoolbutton.h"
+#include "DockingPaneManager.h"
+#include "DockingToolButton.h"
 #include <QDomDocument>
 #include <math.h>
 #include "DockingPaneFlyoutWidget.h"

@@ -1,13 +1,13 @@
-#include "dockingpanemanager.h"
-#include "dockingpanecontainer.h"
-#include "dockingpanesplittercontainer.h"
-#include "dockingpanetabbedcontainer.h"
+#include "DockingPaneManager.h"
+#include "DockingPaneContainer.h"
+#include "DockingPaneSplitterContainer.h"
+#include "DockingPaneTabbedContainer.h"
 #include <QDebug>
-#include "dockautohidebutton.h"
-#include "dockingframestickers.h"
-#include "dockingtargetwidget.h"
-#include "dockingpaneclient.h"
-#include "dockingpanebase.h"
+#include "DockAutoHideButton.h"
+#include "DockingFrameStickers.h"
+#include "DockingTargetWidget.h"
+#include "DockingPaneClient.h"
+#include "DockingPaneBase.h"
 #include "DockingPaneFlyoutWidget.h"
 #include <QApplication>
 /*

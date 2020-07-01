@@ -17,7 +17,7 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "dockingtargetwidget.h"
+#include "DockingTargetWidget.h"
 #include "DockingPaneTitleWidget.h"
 
 DockingTargetWidget::DockingTargetWidget(QWidget *parent) :

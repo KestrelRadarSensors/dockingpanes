@@ -17,7 +17,7 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "dockingframeframesticker.h"
+#include "DockingFrameFrameSticker.h"
 #include <QPaintEvent>
 #include <QPainter>
 #include <QDebug>

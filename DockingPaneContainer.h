@@ -22,9 +22,9 @@
 
 #include <QWidget>
 #include <QGridLayout>
-#include "dockingpanebase.h"
-#include "dockingpanetitlewidget.h"
-#include "dockingtoolbutton.h"
+#include "DockingPaneBase.h"
+#include "DockingPaneTitleWidget.h"
+#include "DockingToolButton.h"
 #include "DockingPaneGlow.h"
 
 class DockingPaneManager;

@@ -21,7 +21,7 @@
 #define DOCKINGFRAMECENTRESTICKER_H
 
 #include <QWidget>
-#include "dockingframeframesticker.h"
+#include "DockingFrameFrameSticker.h"
 
 class QPaintEvent;
 class DockingFrameStickers : public QWidget

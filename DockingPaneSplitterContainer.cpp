@@ -17,7 +17,7 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "dockingpanesplittercontainer.h"
+#include "DockingPaneSplitterContainer.h"
 #include <QGridLayout>
 #include <QDomDocument>
 #include <QDebug>

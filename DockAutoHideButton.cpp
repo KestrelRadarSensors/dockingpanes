@@ -17,7 +17,7 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "dockautohidebutton.h"
+#include "DockAutoHideButton.h"
 #include <QStylePainter>
 #include <QFont>
 #include <QDebug>

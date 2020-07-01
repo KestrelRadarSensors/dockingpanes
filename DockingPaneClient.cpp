@@ -17,7 +17,7 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "dockingpaneclient.h"
+#include "DockingPaneClient.h"
 #include <QDomDocument>
 
 DockingPaneClient::DockingPaneClient(QWidget *parent) :
