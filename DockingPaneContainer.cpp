@@ -91,6 +91,7 @@ DockingPaneContainer::DockingPaneContainer(QString title, QString id, QWidget *p
 
     m_headerWidget->setLayout(hLayout);
     m_headerWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum);
+    m_headerWidget->setMaximumHeight(20);
 
     vLayout->addWidget(m_headerWidget);
 
