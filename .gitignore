@@ -28,3 +28,10 @@ target_wrapper.*
 
 # QtCreator
 *.autosave
+
+# Random
+*.cpp.*
+*.user
+*.pro.*
+*.h.*
+
