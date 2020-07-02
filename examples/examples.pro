@@ -21,5 +21,5 @@ TEMPLATE = subdirs
 CONFIG += ordered
 
 SUBDIRS += \
-        src/DockingPanes.pro \
-        examples
+        simple
+

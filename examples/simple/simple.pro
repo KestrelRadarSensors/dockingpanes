@@ -17,9 +17,30 @@
 #  along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-TEMPLATE = subdirs
-CONFIG += ordered
+QT       += core gui
 
-SUBDIRS += \
-        src/DockingPanes.pro \
-        examples
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+TARGET = simple
+TEMPLATE = app
+
+DEFINES += QT_DEPRECATED_WARNINGS
+
+SOURCES += \
+        main.cpp \
+        mainwindow.cpp
+
+HEADERS += \
+        mainwindow.h
+
+FORMS += \
+        mainwindow.ui
+
+INCLUDEPATH += \
+        $$PWD/../../src
+
+CONFIG(debug, debug|release) {
+    LIBS += -L$$OUT_PWD/../../src/debug/ -lDockingPanesd
+} else {
+    LIBS += -L$$OUT_PWD/../../src/release/ -lDockingPanes
+}
