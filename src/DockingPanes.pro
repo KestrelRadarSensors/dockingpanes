@@ -17,13 +17,21 @@
 #  along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-TEMPLATE = lib
+# the following test is used to check if an include outside the source tree has been provided
+# this allows the library to be included as a submodule but retain the ability to modify how
+# the library is built.
 
-CONFIG -= create_prl
+exists($$PWD/../../inc_dockingpanes.pri) {
+    include($$PWD/../../inc_dockingpanes.pri)
+} else {
+    TEMPLATE = lib
 
-CONFIG(debug, debug|release) {
-    mac: TARGET = $$join(TARGET,,,_debug)
-    win32: TARGET = $$join(TARGET,,,d)
+    CONFIG -= create_prl
+
+    CONFIG(debug, debug|release) {
+        mac: TARGET = $$join(TARGET,,,_debug)
+        win32: TARGET = $$join(TARGET,,,d)
+    }
 }
 
 QT += widgets core gui xml
