@@ -47,8 +47,8 @@ DockAutoHideButton::DockAutoHideButton(const QIcon& icon, const QString& text, Q
 
 void DockAutoHideButton::init()
 {
-    orientation_ = Qt::Horizontal;
-    mirrored_ = false;
+    m_orientation = Qt::Horizontal;
+    m_mirrored = false;
     m_swapDirection = false;
 
     this->setFont(QFont("Segoe UI", 9));
@@ -68,7 +68,7 @@ void DockAutoHideButton::init()
 
 Qt::Orientation DockAutoHideButton::orientation() const
 {
-    return orientation_;
+    return m_orientation;
 }
 
 void DockAutoHideButton::swapDirection(bool state)
@@ -78,7 +78,7 @@ void DockAutoHideButton::swapDirection(bool state)
 
 void DockAutoHideButton::setOrientation(Qt::Orientation orientation)
 {
-    orientation_ = orientation;
+    m_orientation = orientation;
 
     switch (orientation) {
         case Qt::Horizontal: {
@@ -95,12 +95,12 @@ void DockAutoHideButton::setOrientation(Qt::Orientation orientation)
 
 bool DockAutoHideButton::mirrored() const
 {
-    return mirrored_;
+    return m_mirrored;
 }
 
 void DockAutoHideButton::setMirrored(bool mirrored)
 {
-    mirrored_ = mirrored;
+    m_mirrored = mirrored;
 }
 
 QSize DockAutoHideButton::sizeHint() const
@@ -111,7 +111,7 @@ QSize DockAutoHideButton::sizeHint() const
     size.setWidth(fm.width(this->text()));
     size.setHeight(60);
 
-    if (orientation_ == Qt::Vertical) {
+    if (m_orientation == Qt::Vertical) {
         size.transpose();
     }
 
@@ -168,9 +168,9 @@ void DockAutoHideButton::paintEvent(QPaintEvent*)
 
     p.setPen(textColor);
 
-    switch (orientation_) {
+    switch (m_orientation) {
         case Qt::Horizontal: {
-            if (mirrored_) {
+            if (m_mirrored) {
                 p.rotate(180);
                 p.translate(-width(), -height());
             }
@@ -189,7 +189,7 @@ void DockAutoHideButton::paintEvent(QPaintEvent*)
         }
 
         case Qt::Vertical: {
-            if (mirrored_) {
+            if (m_mirrored) {
                 p.rotate(-90);
                 p.translate(-height(), 0);
             } else {
@@ -216,7 +216,7 @@ QStyleOptionButton* DockAutoHideButton::getStyleOption() const
 
     opt->initFrom(this);
 
-    if (orientation_ == Qt::Vertical) {
+    if (m_orientation == Qt::Vertical) {
         QSize size = opt->rect.size();
 
         size.transpose();

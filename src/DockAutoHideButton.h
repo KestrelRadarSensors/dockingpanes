@@ -74,8 +74,8 @@ class DockAutoHideButton : public QPushButton
         void init();
         void onTimerElapsed(void);
 
-        Qt::Orientation orientation_;
-        bool mirrored_;
+        Qt::Orientation m_orientation;
+        bool m_mirrored;
         bool m_hovered;
         DockingPaneBase *m_dockingPane;
         DockingPaneContainer *m_paneContainer;
