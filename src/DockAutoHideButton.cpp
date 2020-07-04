@@ -17,11 +17,13 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "DockAutoHideButton.h"
-#include <QStylePainter>
-#include <QFont>
 #include <QDebug>
+#include <QFont>
+#include <QStylePainter>
+
 #include <QTimer>
+
+#include "DockAutoHideButton.h"
 
 DockAutoHideButton::DockAutoHideButton(DockAutoHideButton::Position pos, QWidget* parent)
 : QPushButton(parent)

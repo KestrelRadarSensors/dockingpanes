@@ -22,9 +22,11 @@
 
 #include <QPushButton>
 #include <QStyleOptionButton>
+
 #include "DockingPaneBase.h"
 #include "DockingPaneContainer.h"
-#include <QTimer>
+
+class QTimer;
 
 class DockAutoHideButton : public QPushButton
 {
