@@ -57,7 +57,7 @@ void DockAutoHideButton::init()
 
     m_hovered = false;
 
-    m_hoverTimer = new QTimer();
+    m_hoverTimer = new QTimer(this);
 
     m_hoverTimer->setInterval(1000);
 
