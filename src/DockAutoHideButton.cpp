@@ -21,7 +21,6 @@
 #include <QFont>
 #include <QStyleOptionButton>
 #include <QStylePainter>
-
 #include <QTimer>
 
 #include "DockAutoHideButton.h"
@@ -68,7 +67,7 @@ void DockAutoHideButton::init()
 
     m_hoverTimer->setInterval(1000);
 
-    connect(m_hoverTimer,SIGNAL(timeout()), this, SLOT(onTimerElapsed()));
+    connect(m_hoverTimer,&QTimer::timeout, this, &DockAutoHideButton::onTimerElapsed);
 }
 
 Qt::Orientation DockAutoHideButton::orientation() const
@@ -152,7 +151,7 @@ void DockAutoHideButton::onTimerElapsed(void)
 
         timer->stop();
 
-        emit openFlyout();
+        Q_EMIT openFlyout();
     }
 }
 

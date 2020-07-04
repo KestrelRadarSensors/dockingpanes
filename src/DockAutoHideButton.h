@@ -42,7 +42,6 @@ class DockAutoHideButton : public QPushButton
             Bottom
         };
 
-    public:
         DockAutoHideButton(Position pos, QWidget* parent = 0);
         DockAutoHideButton(const QString& text, QWidget* parent = 0);
         DockAutoHideButton(const QIcon& icon, const QString& text, QWidget* parent = 0);
@@ -68,15 +67,13 @@ class DockAutoHideButton : public QPushButton
         virtual void enterEvent(QEvent *event) override;
         virtual void leaveEvent(QEvent *event) override;
 
-    signals:
+    Q_SIGNALS:
         void openFlyout(void);
-
-    private slots:
-        void onTimerElapsed(void);
 
     private:
         QStyleOptionButton* getStyleOption() const;
         void init();
+        void onTimerElapsed(void);
 
         Qt::Orientation orientation_;
         bool mirrored_;
