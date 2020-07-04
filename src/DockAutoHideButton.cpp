@@ -26,11 +26,9 @@
 #include "DockAutoHideButton.h"
 
 DockAutoHideButton::DockAutoHideButton(DockAutoHideButton::Position pos, QWidget* parent)
-: QPushButton(parent)
+: QPushButton(parent), m_pos(pos)
 {
     init();
-
-    m_pos = pos;
 }
 
 DockAutoHideButton::DockAutoHideButton(const QString& text, QWidget* parent)
