@@ -45,10 +45,6 @@ DockAutoHideButton::DockAutoHideButton(const QIcon& icon, const QString& text, Q
     init();
 }
 
-DockAutoHideButton::~DockAutoHideButton()
-{
-}
-
 void DockAutoHideButton::init()
 {
     orientation_ = Qt::Horizontal;

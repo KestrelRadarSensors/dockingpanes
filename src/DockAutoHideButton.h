@@ -45,7 +45,6 @@ class DockAutoHideButton : public QPushButton
         DockAutoHideButton(Position pos, QWidget* parent = 0);
         DockAutoHideButton(const QString& text, QWidget* parent = 0);
         DockAutoHideButton(const QIcon& icon, const QString& text, QWidget* parent = 0);
-        ~DockAutoHideButton();
 
         Qt::Orientation orientation() const;
         void setOrientation(Qt::Orientation orientation);
