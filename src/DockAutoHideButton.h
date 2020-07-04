@@ -21,11 +21,11 @@
 #define DOCKAUTOHIDEBUTTON_H
 
 #include <QPushButton>
-#include <QStyleOptionButton>
 
 #include "DockingPaneBase.h"
 #include "DockingPaneContainer.h"
 
+class QStyleOptionButton;
 class QTimer;
 
 class DockAutoHideButton : public QPushButton
@@ -75,7 +75,7 @@ class DockAutoHideButton : public QPushButton
         void onTimerElapsed(void);
 
     private:
-        QStyleOptionButton getStyleOption() const;
+        QStyleOptionButton* getStyleOption() const;
         void init();
 
         Qt::Orientation orientation_;

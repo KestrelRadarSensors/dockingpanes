@@ -19,6 +19,7 @@
 
 #include <QDebug>
 #include <QFont>
+#include <QStyleOptionButton>
 #include <QStylePainter>
 
 #include <QTimer>
@@ -215,25 +216,25 @@ void DockAutoHideButton::paintEvent(QPaintEvent* event)
     }
 }
 
-QStyleOptionButton DockAutoHideButton::getStyleOption() const
+QStyleOptionButton* DockAutoHideButton::getStyleOption() const
 {
-    QStyleOptionButton opt;
+    QStyleOptionButton* opt = new QStyleOptionButton();
 
-    opt.initFrom(this);
+    opt->initFrom(this);
 
     if (orientation_ == Qt::Vertical) {
-        QSize size = opt.rect.size();
+        QSize size = opt->rect.size();
 
         size.transpose();
 
-        opt.rect.setSize(size);
+        opt->rect.setSize(size);
     }
 
-    opt.features = QStyleOptionButton::None;
-    opt.features |= QStyleOptionButton::Flat;
-    opt.text = text();
-    opt.icon = icon();
-    opt.iconSize = iconSize();
+    opt->features = QStyleOptionButton::None;
+    opt->features |= QStyleOptionButton::Flat;
+    opt->text = text();
+    opt->icon = icon();
+    opt->iconSize = iconSize();
 
     return opt;
 }
