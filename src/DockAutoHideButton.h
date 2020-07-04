@@ -55,7 +55,7 @@ class DockAutoHideButton : public QPushButton
 
         void swapDirection(bool state);
 
-        QSize sizeHint() const;
+        virtual QSize sizeHint() const override;
         Position position(void);
         void setPane(DockingPaneContainer *container, DockingPaneBase *pane);
 
