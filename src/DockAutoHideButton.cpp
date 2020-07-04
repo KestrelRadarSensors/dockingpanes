@@ -156,9 +156,8 @@ void DockAutoHideButton::onTimerElapsed(void)
     }
 }
 
-void DockAutoHideButton::paintEvent(QPaintEvent* event)
+void DockAutoHideButton::paintEvent(QPaintEvent*)
 {
-    Q_UNUSED(event);
     QStylePainter p(this);
     QColor color, textColor;
 
