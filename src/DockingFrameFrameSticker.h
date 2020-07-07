@@ -31,7 +31,7 @@ class DockingFrameFrameSticker : public QWidget
         void updateCursorPos(QPoint pos);
 
     protected:
-        void paintEvent(QPaintEvent* event);
+        virtual void paintEvent(QPaintEvent* event) override;
 
     private:
         QImage m_activeImage;

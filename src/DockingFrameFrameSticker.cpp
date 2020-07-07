@@ -40,10 +40,8 @@ DockingFrameFrameSticker::DockingFrameFrameSticker(QString image, QWidget *paren
     this->setMaximumSize(m_activeImage.size());
 }
 
-void DockingFrameFrameSticker::paintEvent(QPaintEvent* event)
+void DockingFrameFrameSticker::paintEvent(QPaintEvent*)
 {
-    Q_UNUSED(event);
-
     QPainter p(this);
 
     if (m_isActive) {
