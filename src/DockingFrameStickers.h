@@ -20,6 +20,7 @@
 #ifndef DOCKINGFRAMECENTRESTICKER_H
 #define DOCKINGFRAMECENTRESTICKER_H
 
+#include <QMap>
 #include <QWidget>
 
 class QPaintEvent;
@@ -58,6 +59,17 @@ class DockingFrameStickers : public QWidget
         virtual void showEvent(QShowEvent *e) override;
 
     private:
+        enum StickerPosition
+        {
+            Centre,
+            Left,
+            Right,
+            Top,
+            Bottom,
+            Tab,
+        };
+
+        void initializeStickersImages(void);
         bool m_isActive;
         bool m_tabVisible;
 
@@ -72,6 +84,10 @@ class DockingFrameStickers : public QWidget
         DockingFrameFrameSticker *m_frameRightSticker;
         DockingFrameFrameSticker *m_frameTopSticker;
         DockingFrameFrameSticker *m_frameBottomSticker;
+
+        QMap<StickerPosition, QImage> m_activeStickers;
+        QMap<StickerPosition, QImage> m_inactiveStickers;
+
 };
 
 #endif // DOCKINGFRAMECENTRESTICKER_H
