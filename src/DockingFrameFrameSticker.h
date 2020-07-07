@@ -33,10 +33,6 @@ class DockingFrameFrameSticker : public QWidget
     protected:
         void paintEvent(QPaintEvent* event);
 
-    signals:
-
-    public slots:
-        
     private:
         QImage m_activeImage;
         QImage m_inactiveImage;
