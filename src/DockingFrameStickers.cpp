@@ -25,7 +25,9 @@
 #include "DockingPaneManager.h"
 
 DockingFrameStickers::DockingFrameStickers(QWidget *parent) :
-    QWidget(parent)
+    QWidget(parent),
+    m_isActive(false),
+    m_tabVisible(false)
 {
     setWindowFlags(Qt::Tool | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
 
@@ -36,8 +38,6 @@ DockingFrameStickers::DockingFrameStickers(QWidget *parent) :
     setBaseSize(41+24+24, 41+24+24);
     setMaximumSize(41+24+24, 41+24+24);
     setMinimumSize(41+24+24, 41+24+24);
-
-    m_isActive = false;
 
     QImage centre;
     QImage left;
