@@ -71,10 +71,10 @@ DockingFrameStickers::DockingFrameStickers(QWidget *parent) :
     m_rcTab.setTopLeft(QPoint((this->width()/2)-(tab.width()/2),(this->height()/2)-(tab.height()/2)));
     m_rcTab.setSize(tab.size());
 
-    m_frameLeftSticker = new DockingFrameFrameSticker("frame_left");
-    m_frameRightSticker = new DockingFrameFrameSticker("frame_right");
-    m_frameTopSticker = new DockingFrameFrameSticker("frame_top");
-    m_frameBottomSticker = new DockingFrameFrameSticker("frame_bottom");
+    m_frameLeftSticker = new DockingFrameFrameSticker("frame_left", this);
+    m_frameRightSticker = new DockingFrameFrameSticker("frame_right", this);
+    m_frameTopSticker = new DockingFrameFrameSticker("frame_top", this);
+    m_frameBottomSticker = new DockingFrameFrameSticker("frame_bottom", this);
 }
 
 void DockingFrameStickers::paintEvent(QPaintEvent*)
