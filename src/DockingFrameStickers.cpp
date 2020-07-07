@@ -77,10 +77,8 @@ DockingFrameStickers::DockingFrameStickers(QWidget *parent) :
     m_frameBottomSticker = new DockingFrameFrameSticker("frame_bottom");
 }
 
-void DockingFrameStickers::paintEvent(QPaintEvent* event)
+void DockingFrameStickers::paintEvent(QPaintEvent*)
 {
-    Q_UNUSED(event);
-
     QPainter p(this);
 
     QImage centre;
@@ -185,20 +183,16 @@ bool DockingFrameStickers::getHit(QPoint pos, DockingFrameStickers::DockingPosit
     return(false);
 }
 
-void DockingFrameStickers::hideEvent(QHideEvent *e)
+void DockingFrameStickers::hideEvent(QHideEvent*)
 {
-    Q_UNUSED(e);
-
     m_frameLeftSticker->hide();
     m_frameRightSticker->hide();
     m_frameTopSticker->hide();
     m_frameBottomSticker->hide();
 }
 
-void DockingFrameStickers::showEvent(QShowEvent *e)
+void DockingFrameStickers::showEvent(QShowEvent*)
 {
-    Q_UNUSED(e);
-
     m_frameLeftSticker->show();
     m_frameRightSticker->show();
     m_frameTopSticker->show();

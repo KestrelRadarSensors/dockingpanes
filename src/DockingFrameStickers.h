@@ -53,9 +53,9 @@ class DockingFrameStickers : public QWidget
         bool getHit(QPoint pos, DockingPosition *dockPos);
 
     protected:
-        virtual void paintEvent(QPaintEvent* event);
-        void hideEvent(QHideEvent *e);
-        void showEvent(QShowEvent *e);
+        virtual void paintEvent(QPaintEvent* event) override;
+        virtual void hideEvent(QHideEvent *e) override;
+        virtual void showEvent(QShowEvent *e) override;
 
     private:
         bool m_isActive;
