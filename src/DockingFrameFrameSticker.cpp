@@ -29,7 +29,7 @@ DockingFrameFrameSticker::DockingFrameFrameSticker(QString image, QWidget *paren
     m_inactiveImage(QImage(QString(":/dockingBitmaps/%1_inactive.png").arg(image))),
     m_isActive(false)
 {
-    setWindowFlags(Qt::Tool | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint );
+    setWindowFlags(Qt::Tool | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
 
     setAttribute(Qt::WA_NoSystemBackground, true);
     setAttribute(Qt::WA_TranslucentBackground, true);

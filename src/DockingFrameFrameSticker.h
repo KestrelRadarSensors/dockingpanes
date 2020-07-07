@@ -27,7 +27,7 @@ class DockingFrameFrameSticker : public QWidget
     Q_OBJECT
 
     public:
-        explicit DockingFrameFrameSticker(QString image, QWidget *parent = 0);
+        explicit DockingFrameFrameSticker(QString image, QWidget *parent = nullptr);
         void updateCursorPos(QPoint pos);
 
     protected:
