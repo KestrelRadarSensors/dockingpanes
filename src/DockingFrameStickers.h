@@ -45,21 +45,17 @@ class DockingFrameStickers : public QWidget
         };
 
     public:
-        explicit DockingFrameStickers(QWidget *parent = 0);
-        
+        explicit DockingFrameStickers(QWidget *parent = nullptr);
+
         void setFrameRect(QRect rect);
         void updateCursorPos(QPoint pos);
         void setTabVisible(bool state);
         bool getHit(QPoint pos, DockingPosition *dockPos);
 
-    signals:
-
     protected:
         virtual void paintEvent(QPaintEvent* event);
         void hideEvent(QHideEvent *e);
         void showEvent(QShowEvent *e);
-
-    public slots:
 
     private:
         bool m_isActive;
