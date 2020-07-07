@@ -47,7 +47,7 @@ DockingFrameStickers::DockingFrameStickers(QWidget *parent) :
     m_rcLeft.setTopLeft(QPoint(0,(this->height()/2)-(m_activeStickers.value(Left).height()/2)));
     m_rcLeft.setSize(m_activeStickers.value(Left).size());
 
-    m_rcRight.setTopLeft(QPoint(this->width()-m_activeStickers.value(Right).width(),(this->height()/2)-(m_activeStickers.value(Left).height()/2)));
+    m_rcRight.setTopLeft(QPoint(this->width()-m_activeStickers.value(Right).width(),(this->height()/2)-(m_activeStickers.value(Right).height()/2)));
     m_rcRight.setSize(m_activeStickers.value(Right).size());
 
     m_rcTop.setTopLeft(QPoint((this->width()/2)-(m_activeStickers.value(Top).width()/2), 0));
