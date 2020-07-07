@@ -24,7 +24,10 @@
 #include "DockingFrameFrameSticker.h"
 
 DockingFrameFrameSticker::DockingFrameFrameSticker(QString image, QWidget *parent) :
-    QWidget(parent)
+    QWidget(parent),
+    m_activeImage(QImage(QString(":/dockingBitmaps/%1_active.png").arg(image))),
+    m_inactiveImage(QImage(QString(":/dockingBitmaps/%1_inactive.png").arg(image))),
+    m_isActive(false)
 {
     setWindowFlags(Qt::Tool | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint );
 
@@ -32,14 +35,9 @@ DockingFrameFrameSticker::DockingFrameFrameSticker(QString image, QWidget *paren
     setAttribute(Qt::WA_TranslucentBackground, true);
     setAttribute(Qt::WA_PaintOnScreen);
 
-    m_activeImage = QImage(QString(":/dockingBitmaps/%1_active.png").arg(image));
-    m_inactiveImage = QImage(QString(":/dockingBitmaps/%1_inactive.png").arg(image));
-
     this->setBaseSize(m_activeImage.size());
     this->setMaximumSize(m_activeImage.size());
     this->setMaximumSize(m_activeImage.size());
-
-    m_isActive = false;
 }
 
 void DockingFrameFrameSticker::paintEvent(QPaintEvent* event)
