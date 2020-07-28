@@ -17,18 +17,18 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "DockAutoHideButton.h"
-#include <QStylePainter>
-#include <QFont>
 #include <QDebug>
+#include <QFont>
+#include <QStyleOptionButton>
+#include <QStylePainter>
 #include <QTimer>
 
+#include "DockAutoHideButton.h"
+
 DockAutoHideButton::DockAutoHideButton(DockAutoHideButton::Position pos, QWidget* parent)
-: QPushButton(parent)
+: QPushButton(parent), m_pos(pos)
 {
     init();
-
-    m_pos = pos;
 }
 
 DockAutoHideButton::DockAutoHideButton(const QString& text, QWidget* parent)
@@ -43,14 +43,10 @@ DockAutoHideButton::DockAutoHideButton(const QIcon& icon, const QString& text, Q
     init();
 }
 
-DockAutoHideButton::~DockAutoHideButton()
-{
-}
-
 void DockAutoHideButton::init()
 {
-    orientation_ = Qt::Horizontal;
-    mirrored_ = false;
+    m_orientation = Qt::Horizontal;
+    m_mirrored = false;
     m_swapDirection = false;
 
     this->setFont(QFont("Segoe UI", 9));
@@ -61,16 +57,16 @@ void DockAutoHideButton::init()
 
     m_hovered = false;
 
-    m_hoverTimer = new QTimer();
+    m_hoverTimer = new QTimer(this);
 
     m_hoverTimer->setInterval(1000);
 
-    connect(m_hoverTimer,SIGNAL(timeout()), this, SLOT(onTimerElapsed()));
+    connect(m_hoverTimer,&QTimer::timeout, this, &DockAutoHideButton::onTimerElapsed);
 }
 
 Qt::Orientation DockAutoHideButton::orientation() const
 {
-    return orientation_;
+    return m_orientation;
 }
 
 void DockAutoHideButton::swapDirection(bool state)
@@ -80,7 +76,7 @@ void DockAutoHideButton::swapDirection(bool state)
 
 void DockAutoHideButton::setOrientation(Qt::Orientation orientation)
 {
-    orientation_ = orientation;
+    m_orientation = orientation;
 
     switch (orientation) {
         case Qt::Horizontal: {
@@ -97,12 +93,12 @@ void DockAutoHideButton::setOrientation(Qt::Orientation orientation)
 
 bool DockAutoHideButton::mirrored() const
 {
-    return mirrored_;
+    return m_mirrored;
 }
 
 void DockAutoHideButton::setMirrored(bool mirrored)
 {
-    mirrored_ = mirrored;
+    m_mirrored = mirrored;
 }
 
 QSize DockAutoHideButton::sizeHint() const
@@ -113,7 +109,7 @@ QSize DockAutoHideButton::sizeHint() const
     size.setWidth(fm.width(this->text()));
     size.setHeight(60);
 
-    if (orientation_ == Qt::Vertical) {
+    if (m_orientation == Qt::Vertical) {
         size.transpose();
     }
 
@@ -149,13 +145,12 @@ void DockAutoHideButton::onTimerElapsed(void)
 
         timer->stop();
 
-        emit openFlyout();
+        Q_EMIT openFlyout();
     }
 }
 
-void DockAutoHideButton::paintEvent(QPaintEvent* event)
+void DockAutoHideButton::paintEvent(QPaintEvent*)
 {
-    Q_UNUSED(event);
     QStylePainter p(this);
     QColor color, textColor;
 
@@ -171,9 +166,9 @@ void DockAutoHideButton::paintEvent(QPaintEvent* event)
 
     p.setPen(textColor);
 
-    switch (orientation_) {
+    switch (m_orientation) {
         case Qt::Horizontal: {
-            if (mirrored_) {
+            if (m_mirrored) {
                 p.rotate(180);
                 p.translate(-width(), -height());
             }
@@ -192,7 +187,7 @@ void DockAutoHideButton::paintEvent(QPaintEvent* event)
         }
 
         case Qt::Vertical: {
-            if (mirrored_) {
+            if (m_mirrored) {
                 p.rotate(-90);
                 p.translate(-height(), 0);
             } else {
@@ -213,25 +208,25 @@ void DockAutoHideButton::paintEvent(QPaintEvent* event)
     }
 }
 
-QStyleOptionButton DockAutoHideButton::getStyleOption() const
+QStyleOptionButton* DockAutoHideButton::getStyleOption() const
 {
-    QStyleOptionButton opt;
+    QStyleOptionButton* opt = new QStyleOptionButton();
 
-    opt.initFrom(this);
+    opt->initFrom(this);
 
-    if (orientation_ == Qt::Vertical) {
-        QSize size = opt.rect.size();
+    if (m_orientation == Qt::Vertical) {
+        QSize size = opt->rect.size();
 
         size.transpose();
 
-        opt.rect.setSize(size);
+        opt->rect.setSize(size);
     }
 
-    opt.features = QStyleOptionButton::None;
-    opt.features |= QStyleOptionButton::Flat;
-    opt.text = text();
-    opt.icon = icon();
-    opt.iconSize = iconSize();
+    opt->features = QStyleOptionButton::None;
+    opt->features |= QStyleOptionButton::Flat;
+    opt->text = text();
+    opt->icon = icon();
+    opt->iconSize = iconSize();
 
     return opt;
 }
