@@ -17,21 +17,22 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "DockingPaneContainer.h"
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <QWidget>
-#include <QSpacerItem>
-#include <QGridLayout>
-#include <QFrame>
-#include <QDebug>
-#include "DockingPaneManager.h"
-#include "DockingToolButton.h"
-#include <QDomDocument>
 #include <math.h>
-#include "DockingPaneFlyoutWidget.h"
 #include <QApplication>
+#include <QDebug>
+#include <QDomDocument>
+#include <QGridLayout>
+#include <QHBoxLayout>
 #include <QPainter>
+#include <QSpacerItem>
+#include <QVBoxLayout>
+
+#include "DockingPaneContainer.h"
+#include "DockingPaneFlyoutWidget.h"
+#include "DockingPaneGlow.h"
+#include "DockingPaneManager.h"
+#include "DockingPaneTitleWidget.h"
+#include "DockingToolButton.h"
 
 DockingPaneContainer::DockingPaneContainer(QWidget *parent) :
     DockingPaneBase(parent)

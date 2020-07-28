@@ -20,15 +20,15 @@
 #ifndef DOCKINGPANECONTAINER_H
 #define DOCKINGPANECONTAINER_H
 
-#include <QWidget>
-#include <QGridLayout>
 #include "DockingPaneBase.h"
-#include "DockingPaneTitleWidget.h"
-#include "DockingToolButton.h"
-#include "DockingPaneGlow.h"
 
-class DockingPaneManager;
+class QGridLayout;
+
 class DockingPaneFlyoutWidget;
+class DockingPaneGlow;
+class DockingPaneManager;
+class DockingPaneTitleWidget;
+class DockingToolButton;
 
 class DockingPaneContainer : public DockingPaneBase
 {
@@ -105,7 +105,7 @@ class DockingPaneContainer : public DockingPaneBase
 
         DockingPaneGlow *m_floatingGlow;
 
-        bool m_draggingFlyout;     
+        bool m_draggingFlyout;
 };
 
 #endif // DOCKINGPANECONTAINER_H
