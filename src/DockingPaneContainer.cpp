@@ -49,9 +49,9 @@ DockingPaneContainer::DockingPaneContainer(QString title, QString id, QWidget *p
     vLayout = new QVBoxLayout();
 
     m_isActive = false;
-    m_flyoutWidget = NULL;
+    m_flyoutWidget = nullptr;
 
-    m_floatingGlow = NULL;
+    m_floatingGlow = nullptr;
 
     setWindowFlags(Qt::Tool | Qt::FramelessWindowHint);
 
@@ -285,7 +285,7 @@ void DockingPaneContainer::onUnpinContainer(void)
 
     dockingManager()->unpinPane(m_flyoutWidget->pane());
 
-    m_flyoutWidget = NULL;
+    m_flyoutWidget = nullptr;
 }
 
 void DockingPaneContainer::onCloseContainer(void)
@@ -294,7 +294,7 @@ void DockingPaneContainer::onCloseContainer(void)
 
     dockingManager()->closePinnedPane(m_flyoutWidget->pane());
 
-    m_flyoutWidget = NULL;
+    m_flyoutWidget = nullptr;
 }
 
 DockingPaneFlyoutWidget *DockingPaneContainer::openFlyout(bool hasFocus, QWidget *parent, FlyoutPosition pos, DockingPaneContainer *pane)
@@ -365,7 +365,7 @@ void DockingPaneContainer::onEndDragFlyoutTitle(QPoint pos)
 
     m_flyoutWidget->endDrag();
 
-    m_flyoutWidget = NULL;
+    m_flyoutWidget = nullptr;
 }
 
 void DockingPaneContainer::onMoveDragFlyoutTitle(QPoint pos)
@@ -438,7 +438,7 @@ void DockingPaneContainer::setState(DockingPaneBase::State state)
         if (m_floatingGlow) {
             delete m_floatingGlow;
 
-            m_floatingGlow = NULL;
+            m_floatingGlow = nullptr;
         }
     } else {
         m_pinButton->hide();
