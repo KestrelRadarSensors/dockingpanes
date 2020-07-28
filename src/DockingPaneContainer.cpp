@@ -37,11 +37,11 @@
 DockingPaneContainer::DockingPaneContainer(QWidget *parent) :
     DockingPaneBase(parent)
 {
-
 }
 
 DockingPaneContainer::DockingPaneContainer(QString title, QString id, QWidget *parent, QWidget *clientWidget) :
-    DockingPaneBase(parent)
+    DockingPaneBase(parent),
+    m_clientWidget(clientWidget)
 {
     QVBoxLayout *vLayout;
     QHBoxLayout *hLayout;
