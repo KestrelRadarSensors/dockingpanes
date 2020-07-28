@@ -22,8 +22,9 @@
 
 #include <QWidget>
 
-class DockingPaneManager;
 class QDomNode;
+
+class DockingPaneManager;
 
 class DockingPaneBase : public QWidget
 {
