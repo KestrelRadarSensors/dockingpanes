@@ -21,9 +21,8 @@
 #include <QDebug>
 
 DockingPaneBase::DockingPaneBase(QWidget *parent) :
-    QWidget(parent)
+    QWidget(parent), m_state(Hidden)
 {
-    m_state = Hidden;
 }
 
 QString DockingPaneBase::name(void)
