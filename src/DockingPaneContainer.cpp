@@ -60,8 +60,6 @@ DockingPaneContainer::DockingPaneContainer(QString title, QString id, QWidget *p
     m_headerWidget->setAccessibleName("headerWidget");
     m_headerWidget->setObjectName("headerWidget");
 
-    m_clientWidget = clientWidget;
-
     hLayout = new QHBoxLayout();
 
     m_titleWidget = new DockingPaneTitleWidget("Widget");
@@ -116,10 +114,8 @@ DockingPaneContainer::DockingPaneContainer(QString title, QString id, QWidget *p
     connect(qApp, &QApplication::focusChanged, this, &DockingPaneContainer::onFocusChanged);
 }
 
-void DockingPaneContainer::paintEvent(QPaintEvent* event)
+void DockingPaneContainer::paintEvent(QPaintEvent*)
 {
-    Q_UNUSED(event);
-
     QPainter p(this);
 
     QPen pen(QColor(0xcc, 0xce, 0xdb));
@@ -164,10 +160,8 @@ void DockingPaneContainer::setName(QString name)
     DockingPaneBase::setName(name);
 }
 
-void DockingPaneContainer::onFocusChanged(QWidget *old, QWidget *now)
+void DockingPaneContainer::onFocusChanged(QWidget*, QWidget *now)
 {
-    Q_UNUSED(old);
-
     this->setActivePane(this->isAncestorOf(now));
 }
 
@@ -195,10 +189,8 @@ void DockingPaneContainer::setActivePane(bool active)
     update();
 }
 
-void DockingPaneContainer::floatPane(QRect rect)
+void DockingPaneContainer::floatPane(QRect)
 {
-    Q_UNUSED(rect);
-
     this->setParent(dockingManager()->mainWindow());
 
     setWindowFlags(Qt::Tool | Qt::FramelessWindowHint);
@@ -272,10 +264,8 @@ int DockingPaneContainer::getPaneCount(void)
     return(1);
 }
 
-DockingPaneContainer *DockingPaneContainer::getPane(int index)
+DockingPaneContainer *DockingPaneContainer::getPane(int)
 {
-    Q_UNUSED(index);
-
     return(this);
 }
 
