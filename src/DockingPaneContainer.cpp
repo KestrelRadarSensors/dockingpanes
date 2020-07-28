@@ -237,7 +237,7 @@ void DockingPaneContainer::saveLayout(QDomNode *parentNode, bool includeGeometry
     domElement.setAttribute("id", this->id());
 
     if (includeGeometry) {
-        domElement.setAttribute("geometry", (QString) this->saveGeometry().toBase64());
+        domElement.setAttribute("geometry", static_cast<QString>(this->saveGeometry().toBase64()));
     }
 
     parentNode->appendChild(domElement);
