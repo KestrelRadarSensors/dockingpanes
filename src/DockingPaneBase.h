@@ -40,8 +40,8 @@ class DockingPaneBase : public QWidget
             Tabbed
         };
 
-    public:
-        DockingPaneBase(QWidget *parent=NULL);
+        DockingPaneBase(QWidget *parent = nullptr);
+        virtual ~DockingPaneBase() = default;
 
         friend class DockingPaneManager;
 
