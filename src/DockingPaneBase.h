@@ -58,13 +58,9 @@ class DockingPaneBase : public QWidget
         virtual void setName(QString name);
         virtual void setId(QString id);
 
-    protected:
         bool m_isClient;
-
-        State m_state;
-
         DockingPaneManager *m_dockingManager;
-
+        State m_state;
         QString m_name;
         QString m_id;
 };
