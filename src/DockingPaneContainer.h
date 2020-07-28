@@ -63,17 +63,15 @@ class DockingPaneContainer : public DockingPaneBase
         DockingPaneGlow *floatingGlow(void);
         void setState(DockingPaneBase::State state);
 
+        void onCloseButtonClicked(void);
+        void onPinButtonClicked(void);
+        void onFClicked(void);
+
     protected:
         virtual void setName(QString name);
         void setActivePane(bool active);
         virtual void paintEvent(QPaintEvent* event);
 
-    public slots:
-        void onCloseButtonClicked(void);
-        void onPinButtonClicked(void);
-        void onFClicked(void);
-
-    protected slots:
         void onStartDragTitle(QPoint pos);
         void onEndDragTitle(QPoint pos);
         void onMoveDragTitle(QPoint pos);
@@ -82,10 +80,7 @@ class DockingPaneContainer : public DockingPaneBase
         void onEndDragFlyoutTitle(QPoint pos);
         void onMoveDragFlyoutTitle(QPoint pos);
 
-    private slots:
-        void onUnpinContainer(void);
-        void onFocusChanged(QWidget *old, QWidget *now);
-        void onCloseContainer(void);
+
 
     protected:
         QWidget *m_headerWidget;
@@ -106,6 +101,11 @@ class DockingPaneContainer : public DockingPaneBase
         DockingPaneGlow *m_floatingGlow;
 
         bool m_draggingFlyout;
+
+     private:
+        void onUnpinContainer(void);
+        void onFocusChanged(QWidget *old, QWidget *now);
+        void onCloseContainer(void);
 };
 
 #endif // DOCKINGPANECONTAINER_H
