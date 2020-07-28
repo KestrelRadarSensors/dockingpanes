@@ -45,6 +45,8 @@ class DockingPaneContainer : public DockingPaneBase
 
         explicit DockingPaneContainer(QString title, QString id, QWidget *parent = nullptr, QWidget *clientWidget = nullptr);
         explicit DockingPaneContainer(QWidget *parent = nullptr);
+        virtual ~DockingPaneContainer() = default;
+
         void floatPane(QRect rect);
         void floatPane(QPoint pos);
         virtual int getPaneCount(void);
@@ -55,17 +57,17 @@ class DockingPaneContainer : public DockingPaneBase
         QWidget *clientWidget();
         virtual void setClientWidget(QWidget *widget);
 
-        virtual void saveLayout(QDomNode *parentNode, bool includeGeometry=false);
+        virtual void saveLayout(QDomNode *parentNode, bool includeGeometry=false) override;
 
         QSize flyoutSize(void);
         void setFlyoutSize(QSize flyoutSize);
         DockingPaneGlow *floatingGlow(void);
-        void setState(DockingPaneBase::State state);
+        void setState(DockingPaneBase::State state) override;
 
     protected:
-        virtual void setName(QString name);
+        virtual void setName(QString name) override;
         void setActivePane(bool active);
-        virtual void paintEvent(QPaintEvent* event);
+        virtual void paintEvent(QPaintEvent* event) override;
 
         void onStartDragTitle(QPoint pos);
         void onEndDragTitle(QPoint pos);
