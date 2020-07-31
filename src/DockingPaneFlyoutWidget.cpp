@@ -30,11 +30,9 @@
 #include "DockingPaneTitleWidget.h"
 #include "DockingToolButton.h"
 
-DockingPaneFlyoutWidget::DockingPaneFlyoutWidget(bool hasFocus, QRect clientRect, DockingPaneContainer *container, DockingPaneContainer *pane, FlyoutPosition pos, QWidget *widget, QWidget *parent) :
+DockingPaneFlyoutWidget::DockingPaneFlyoutWidget(bool hasFocus, QRect, DockingPaneContainer *container, DockingPaneContainer *pane, FlyoutPosition pos, QWidget *widget, QWidget *parent) :
     QWidget(parent)
 {
-    Q_UNUSED(clientRect);
-
     QVBoxLayout *vLayout;
     QHBoxLayout *hLayout;
 
@@ -170,10 +168,8 @@ DockingPaneFlyoutWidget::DockingPaneFlyoutWidget(bool hasFocus, QRect clientRect
 }
 
 
-void DockingPaneFlyoutWidget::resizeEvent(QResizeEvent * event)
+void DockingPaneFlyoutWidget::resizeEvent(QResizeEvent*)
 {
-    Q_UNUSED(event);
-
     m_headerWidget->setMinimumHeight(6+m_headerWidget->fontMetrics().height());
     m_headerWidget->setMaximumHeight(6+m_headerWidget->fontMetrics().height());
 }
@@ -182,17 +178,13 @@ DockingPaneFlyoutWidget::~DockingPaneFlyoutWidget()
 {
 }
 
-void DockingPaneFlyoutWidget::enterEvent(QEvent *e)
+void DockingPaneFlyoutWidget::enterEvent(QEvent*)
 {
-    Q_UNUSED(e);
-
     updateCursor();
 }
 
-void DockingPaneFlyoutWidget::leaveEvent(QEvent *e)
+void DockingPaneFlyoutWidget::leaveEvent(QEvent*)
 {
-    Q_UNUSED(e);
-
     this->unsetCursor();
 }
 
@@ -243,10 +235,8 @@ void DockingPaneFlyoutWidget::updateCursor()
     }
 }
 
-void DockingPaneFlyoutWidget::paintEvent(QPaintEvent* event)
+void DockingPaneFlyoutWidget::paintEvent(QPaintEvent*)
 {
-    Q_UNUSED(event);
-
     QPainter p(this);
 
     QPen pen(QColor(0xcc, 0xce, 0xdb));
@@ -409,10 +399,8 @@ void DockingPaneFlyoutWidget::closeEvent(QCloseEvent *event)
     event->accept();
 }
 
-void DockingPaneFlyoutWidget::onFocusChanged(QWidget *old,QWidget *now)
+void DockingPaneFlyoutWidget::onFocusChanged(QWidget*, QWidget *now)
 {
-    Q_UNUSED(old);
-
     setActivePane(this->isAncestorOf(now));
 
     if (!m_dragMode) {
