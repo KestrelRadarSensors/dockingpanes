@@ -19,8 +19,7 @@
 
 #include <QApplication>
 #include <QDebug>
-#include <QPainter>
-#include <QPaintEvent>
+#include <QMouseEvent>
 
 #include "DockingPaneGlowWidget.h"
 
