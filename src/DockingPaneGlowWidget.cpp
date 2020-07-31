@@ -17,14 +17,15 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "DockingPaneGlowWidget.h"
+#include <QApplication>
+#include <QDebug>
+#include <QGradient>
+#include <QLinearGradient>
+#include <QRadialGradient>
 #include <QPainter>
 #include <QPaintEvent>
-#include <QDebug>
-#include <QApplication>
-#include <QGradient>
-#include <QRadialGradient>
-#include <QLinearGradient>
+
+#include "DockingPaneGlowWidget.h"
 
 DockingPaneGlowWidget::DockingPaneGlowWidget(QWidget *floatingPane, DockingPaneGlowWidget::Position pos, QWidget *parent) :
     QWidget(parent)
