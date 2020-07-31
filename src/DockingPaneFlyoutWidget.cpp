@@ -17,14 +17,18 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "DockingPaneFlyoutWidget.h"
-#include "DockingPaneContainer.h"
-#include <QApplication>
-#include <QPainter>
-#include <QMouseEvent>
-#include <QDebug>
-#include <QTimer>
 #include "math.h"
+#include <QApplication>
+#include <QDebug>
+#include <QGridLayout>
+#include <QMouseEvent>
+#include <QPainter>
+#include <QTimer>
+
+#include "DockingPaneContainer.h"
+#include "DockingPaneFlyoutWidget.h"
+#include "DockingPaneTitleWidget.h"
+#include "DockingToolButton.h"
 
 DockingPaneFlyoutWidget::DockingPaneFlyoutWidget(bool hasFocus, QRect clientRect, DockingPaneContainer *container, DockingPaneContainer *pane, FlyoutPosition pos, QWidget *widget, QWidget *parent) :
     QWidget(parent)

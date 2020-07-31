@@ -21,13 +21,12 @@
 #define DOCKINGPANEFLYOUTWIDGET_H
 
 #include <QWidget>
-#include <QGridLayout>
-#include "DockingPaneContainer.h"
-#include "DockingToolButton.h"
-#include "DockingPaneTitleWidget.h"
 
-class QMouseEvent;
-class QCloseEvent;
+class QGridLayout;
+
+class DockingPaneContainer;
+class DockingToolButton;
+class DockingPaneTitleWidget;
 
 class DockingPaneFlyoutWidget : public QWidget
 {
