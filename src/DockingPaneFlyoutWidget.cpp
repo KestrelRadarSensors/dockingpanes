@@ -50,7 +50,7 @@ DockingPaneFlyoutWidget::DockingPaneFlyoutWidget(bool hasFocus, QRect clientRect
     if (!hasFocus) {
         setAttribute(Qt::WA_ShowWithoutActivating);
 
-        QTimer::singleShot(1000, this, SLOT(autoHideTimeout()));
+        QTimer::singleShot(1000, this, &DockingPaneFlyoutWidget::autoHideTimeout);
     }
 
     m_isActive = false;
@@ -69,9 +69,9 @@ DockingPaneFlyoutWidget::DockingPaneFlyoutWidget(bool hasFocus, QRect clientRect
 
     m_titleWidget = new DockingPaneTitleWidget(m_pane->name());
 
-    connect(m_titleWidget, SIGNAL(titleBarStartMove(QPoint)), this, SIGNAL(startDragFlyoutTitle(QPoint)));
-    connect(m_titleWidget, SIGNAL(titleBarEndMove(QPoint)), this, SIGNAL(endDragFlyoutTitle(QPoint)));
-    connect(m_titleWidget, SIGNAL(titleBarMoved(QPoint)), this, SIGNAL(moveDragFlyoutTitle(QPoint)));
+    connect(m_titleWidget, &DockingPaneTitleWidget::titleBarStartMove, this, &DockingPaneFlyoutWidget::startDragFlyoutTitle);
+    connect(m_titleWidget, &DockingPaneTitleWidget::titleBarEndMove, this, &DockingPaneFlyoutWidget::endDragFlyoutTitle);
+    connect(m_titleWidget, &DockingPaneTitleWidget::titleBarMoved, this, &DockingPaneFlyoutWidget::moveDragFlyoutTitle);
 
     m_titleWidget->setFocusProxy(widget);
 
@@ -80,9 +80,9 @@ DockingPaneFlyoutWidget::DockingPaneFlyoutWidget(bool hasFocus, QRect clientRect
     m_closeButton = new DockingToolButton(DockingToolButton::closeButtonInactive);
     m_pinButton = new DockingToolButton(DockingToolButton::unpinButtonInactive);
 
-    connect(m_closeButton, SIGNAL(clicked()), this, SIGNAL(closeContainer()));
+    connect(m_closeButton, &DockingToolButton::clicked, this, &DockingPaneFlyoutWidget::closeContainer);
 
-    connect(m_pinButton, SIGNAL(clicked()), this, SIGNAL(unpinContainer()));
+    connect(m_pinButton, &DockingToolButton::clicked, this, &DockingPaneFlyoutWidget::unpinContainer);
 
     m_closeButton->setMaximumWidth(16);
     m_pinButton->setMaximumWidth(16);
@@ -156,7 +156,7 @@ DockingPaneFlyoutWidget::DockingPaneFlyoutWidget(bool hasFocus, QRect clientRect
         }
     }
 
-    connect(qApp, SIGNAL(focusChanged(QWidget*,QWidget*)), this, SLOT(onFocusChanged(QWidget *,QWidget*)));
+    connect(qApp, &QApplication::focusChanged, this, &DockingPaneFlyoutWidget::onFocusChanged);
 
     if (hasFocus) {
         m_clientWidget->setFocus();
@@ -417,7 +417,7 @@ void DockingPaneFlyoutWidget::onFocusChanged(QWidget *old,QWidget *now)
 
     if (!m_dragMode) {
         if (!this->isAncestorOf(now)) {
-            emit flyoutFocusLost();
+            Q_EMIT flyoutFocusLost();
         }
     }
 }
@@ -495,7 +495,7 @@ void DockingPaneFlyoutWidget::setPositionAndSize(void)
 void DockingPaneFlyoutWidget::autoHideTimeout(void)
 {
     if (!m_isActive) {
-        emit autoHideFlyout();
+        Q_EMIT autoHideFlyout();
     }
 }
 
@@ -510,7 +510,7 @@ void DockingPaneFlyoutWidget::beginDrag(void)
 
 void DockingPaneFlyoutWidget::endDrag(void)
 {
-    emit flyoutFocusLost();
+    Q_EMIT flyoutFocusLost();
 }
 
 QWidget *DockingPaneFlyoutWidget::clientWidget(void)
