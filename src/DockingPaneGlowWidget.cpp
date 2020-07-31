@@ -240,7 +240,7 @@ void DockingPaneGlowWidget::mouseMoveEvent(QMouseEvent*)
 
         updatePosition();
 
-        emit glowResized();
+        Q_EMIT glowResized();
 
         m_Pos = pos;
     } else {
