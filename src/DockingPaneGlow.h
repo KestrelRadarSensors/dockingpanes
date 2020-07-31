@@ -21,7 +21,8 @@
 #define DOCKINGPANEGLOW_H
 
 #include <QObject>
-#include "DockingPaneGlowWidget.h"
+
+class DockingPaneGlowWidget;
 
 class DockingPaneGlow : public QObject
 {
@@ -30,17 +31,13 @@ class DockingPaneGlow : public QObject
     public:
         explicit DockingPaneGlow(QWidget *floatingPane, QObject *parent = 0);
         ~DockingPaneGlow();
+
         void raise(void);
         void update(void);
 
-    signals:
-        
-    public slots:
-
-    private slots:
+    private:
         void onGlowResized(void);
 
-    private:
         DockingPaneGlowWidget *m_leftGlow;
         DockingPaneGlowWidget *m_rightGlow;
         DockingPaneGlowWidget *m_topGlow;

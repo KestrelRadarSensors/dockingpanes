@@ -17,8 +17,10 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "DockingPaneGlow.h"
 #include <QDebug>
+
+#include "DockingPaneGlow.h"
+#include "DockingPaneGlowWidget.h"
 
 DockingPaneGlow::DockingPaneGlow(QWidget *floatingPane, QObject *parent) :
     QObject(parent)
