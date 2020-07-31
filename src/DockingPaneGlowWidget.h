@@ -35,8 +35,7 @@ class DockingPaneGlowWidget : public QWidget
             Bottom
         };
 
-    public:
-        explicit DockingPaneGlowWidget(QWidget *floatingPane, Position pos, QWidget *parent = 0);
+        explicit DockingPaneGlowWidget(QWidget* floatingPane, Position pos, QWidget* parent = nullptr);
 
         void updatePosition(void);
 
