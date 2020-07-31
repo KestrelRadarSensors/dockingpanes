@@ -62,7 +62,7 @@ class DockingPaneContainer : public DockingPaneBase
         QSize flyoutSize(void);
         void setFlyoutSize(QSize flyoutSize);
         DockingPaneGlow *floatingGlow(void);
-        void setState(DockingPaneBase::State state) override;
+        virtual void setState(DockingPaneBase::State state) override;
 
     protected:
         virtual void setName(QString name) override;
