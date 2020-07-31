@@ -39,25 +39,20 @@ class DockingPaneGlowWidget : public QWidget
 
         void updatePosition(void);
 
+    Q_SIGNALS:
+        void glowResized();
+
+    protected:
+        virtual void paintEvent(QPaintEvent* event) override;
+        virtual void mousePressEvent(QMouseEvent* event) override;
+        virtual void mouseMoveEvent(QMouseEvent* event) override;
+        virtual void mouseReleaseEvent(QMouseEvent* event) override;
+        virtual void enterEvent(QEvent* event) override;
+        virtual void leaveEvent(QEvent* event) override;
+
     private:
         void updateCursor();
 
-
-    protected:
-        virtual void paintEvent(QPaintEvent* event);
-
-        virtual void mousePressEvent(QMouseEvent *e);
-        virtual void mouseMoveEvent(QMouseEvent *e);
-        virtual void mouseReleaseEvent(QMouseEvent *e);
-        virtual void enterEvent(QEvent *e);
-        virtual void leaveEvent(QEvent *e);
-
-    signals:
-        void glowResized();
-        
-    public slots:
-        
-    private:
         QWidget *m_floatingPane;
         bool m_dragging;
         QPoint m_Pos;
