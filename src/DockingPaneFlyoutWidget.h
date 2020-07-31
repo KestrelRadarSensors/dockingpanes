@@ -21,13 +21,12 @@
 #define DOCKINGPANEFLYOUTWIDGET_H
 
 #include <QWidget>
-#include <QGridLayout>
-#include "DockingPaneContainer.h"
-#include "DockingToolButton.h"
-#include "DockingPaneTitleWidget.h"
 
-class QMouseEvent;
-class QCloseEvent;
+class QGridLayout;
+
+class DockingPaneContainer;
+class DockingToolButton;
+class DockingPaneTitleWidget;
 
 class DockingPaneFlyoutWidget : public QWidget
 {
@@ -42,8 +41,7 @@ class DockingPaneFlyoutWidget : public QWidget
             Bottom
         };
 
-    public:
-        explicit DockingPaneFlyoutWidget(bool hasFocus, QRect clientRect, DockingPaneContainer *container, DockingPaneContainer *pane, FlyoutPosition pos, QWidget *widget, QWidget *parent = 0);
+        explicit DockingPaneFlyoutWidget(bool hasFocus, DockingPaneContainer *container, DockingPaneContainer *pane, FlyoutPosition pos, QWidget *widget, QWidget *parent = 0);
         ~DockingPaneFlyoutWidget();
 
         void restorePaneWidget();
@@ -53,26 +51,7 @@ class DockingPaneFlyoutWidget : public QWidget
         QWidget *clientWidget(void);
         QRect paneRect(void);
 
-
-    private:
-        void setActivePane(bool active);
-        void setPositionAndSize(void);
-        void updateCursor(void);
-
-    protected:
-        virtual void paintEvent(QPaintEvent* event);
-        virtual void closeEvent(QCloseEvent *event);
-        void resizeEvent(QResizeEvent * event);
-
-        virtual void mouseMoveEvent(QMouseEvent *e);
-        virtual void mouseReleaseEvent(QMouseEvent *e);
-        virtual void mousePressEvent(QMouseEvent *e);
-        virtual bool eventFilter(QObject *obj, QEvent *event);
-
-        virtual void enterEvent(QEvent *e);
-        virtual void leaveEvent(QEvent *e);
-
-    signals:
+    Q_SIGNALS:
         void unpinContainer(void);
         void closeContainer(void);
         void startDragFlyoutTitle(QPoint pos);
@@ -81,25 +60,39 @@ class DockingPaneFlyoutWidget : public QWidget
         void flyoutFocusLost(void);
         void autoHideFlyout(void);
 
-    private slots:
+    protected:
+        virtual void paintEvent(QPaintEvent* event) override;
+        virtual void closeEvent(QCloseEvent* event) override;
+        virtual void resizeEvent(QResizeEvent* event) override;
+
+        virtual void mouseMoveEvent(QMouseEvent* event) override;
+        virtual void mouseReleaseEvent(QMouseEvent* event) override;
+        virtual void mousePressEvent(QMouseEvent* event) override;
+        virtual bool eventFilter(QObject* obj, QEvent* event) override;
+
+        virtual void enterEvent(QEvent* event) override;
+        virtual void leaveEvent(QEvent* event) override;
+
+    private:
+        void setActivePane(bool active);
+        void setPositionAndSize(void);
+        void updateCursor(void);
         void onFocusChanged(QWidget *old,QWidget *now);
         void autoHideTimeout(void);
 
-    public slots:
-
-    private:
         DockingPaneContainer *m_pane;
         DockingPaneContainer *m_container;
         QWidget *m_clientWidget;
         DockingPaneTitleWidget *m_titleWidget;
         QGridLayout *m_clientLayout;
-        bool m_isActive;
+
         QWidget *m_headerWidget;
         DockingToolButton *m_closeButton;
         DockingToolButton *m_pinButton;
         QPoint m_initialPos;
         FlyoutPosition m_pos;
         int m_size;
+        bool m_isActive;
         bool m_dragMode;
         bool m_resizeMode;
 };
