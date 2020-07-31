@@ -21,10 +21,12 @@
 #define DOCKAUTOHIDEBUTTON_H
 
 #include <QPushButton>
-#include <QStyleOptionButton>
+
 #include "DockingPaneBase.h"
 #include "DockingPaneContainer.h"
-#include <QTimer>
+
+class QStyleOptionButton;
+class QTimer;
 
 class DockAutoHideButton : public QPushButton
 {
@@ -40,11 +42,9 @@ class DockAutoHideButton : public QPushButton
             Bottom
         };
 
-    public:
         DockAutoHideButton(Position pos, QWidget* parent = 0);
         DockAutoHideButton(const QString& text, QWidget* parent = 0);
         DockAutoHideButton(const QIcon& icon, const QString& text, QWidget* parent = 0);
-        ~DockAutoHideButton();
 
         Qt::Orientation orientation() const;
         void setOrientation(Qt::Orientation orientation);
@@ -54,7 +54,7 @@ class DockAutoHideButton : public QPushButton
 
         void swapDirection(bool state);
 
-        QSize sizeHint() const;
+        virtual QSize sizeHint() const override;
         Position position(void);
         void setPane(DockingPaneContainer *container, DockingPaneBase *pane);
 
@@ -62,22 +62,20 @@ class DockAutoHideButton : public QPushButton
         DockingPaneContainer *container(void);
 
     protected:
-        void paintEvent(QPaintEvent* event);
-        void enterEvent(QEvent *event);
-        void leaveEvent(QEvent *event);
+        virtual void paintEvent(QPaintEvent* event) override;
+        virtual void enterEvent(QEvent *event) override;
+        virtual void leaveEvent(QEvent *event) override;
 
-    signals:
+    Q_SIGNALS:
         void openFlyout(void);
 
-    private slots:
+    private:
+        QStyleOptionButton* getStyleOption() const;
+        void init();
         void onTimerElapsed(void);
 
-    private:
-        QStyleOptionButton getStyleOption() const;
-        void init();
-
-        Qt::Orientation orientation_;
-        bool mirrored_;
+        Qt::Orientation m_orientation;
+        bool m_mirrored;
         bool m_hovered;
         DockingPaneBase *m_dockingPane;
         DockingPaneContainer *m_paneContainer;
