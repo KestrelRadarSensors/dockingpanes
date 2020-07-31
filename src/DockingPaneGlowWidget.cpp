@@ -19,9 +19,6 @@
 
 #include <QApplication>
 #include <QDebug>
-#include <QGradient>
-#include <QLinearGradient>
-#include <QRadialGradient>
 #include <QPainter>
 #include <QPaintEvent>
 
