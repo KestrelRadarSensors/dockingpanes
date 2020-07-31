@@ -29,7 +29,7 @@
 #include "DockingPaneTitleWidget.h"
 #include "DockingToolButton.h"
 
-DockingPaneFlyoutWidget::DockingPaneFlyoutWidget(bool hasFocus, QRect, DockingPaneContainer *container, DockingPaneContainer *pane, FlyoutPosition pos, QWidget *widget, QWidget *parent) :
+DockingPaneFlyoutWidget::DockingPaneFlyoutWidget(bool hasFocus, DockingPaneContainer *container, DockingPaneContainer *pane, FlyoutPosition pos, QWidget *widget, QWidget *parent) :
     QWidget(parent)
 {
     QVBoxLayout *vLayout;
