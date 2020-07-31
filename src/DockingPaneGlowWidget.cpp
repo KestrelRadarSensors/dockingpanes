@@ -28,24 +28,19 @@
 #include "DockingPaneGlowWidget.h"
 
 DockingPaneGlowWidget::DockingPaneGlowWidget(QWidget *floatingPane, DockingPaneGlowWidget::Position pos, QWidget *parent) :
-    QWidget(parent)
+    QWidget(parent),
+    m_floatingPane(floatingPane),
+    m_position(pos),
+    m_dragging(false)
 {
     setWindowFlags(Qt::Tool | Qt::FramelessWindowHint);
-
-    m_floatingPane = floatingPane;
 
     this->setFocusPolicy(Qt::StrongFocus);
     this->setFocusProxy(floatingPane);
     this->setWindowOpacity(0.01);
-
-    setMouseTracking(true);
-
-    m_position = pos;
+    this->setMouseTracking(true);
 
     updatePosition();
-
-    m_dragging = false;
-
 }
 
 void DockingPaneGlowWidget::updatePosition(void)

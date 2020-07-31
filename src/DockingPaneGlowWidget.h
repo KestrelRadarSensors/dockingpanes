@@ -53,13 +53,13 @@ class DockingPaneGlowWidget : public QWidget
     private:
         void updateCursor();
 
-        QWidget *m_floatingPane;
-        bool m_dragging;
-        QPoint m_Pos;
+        QWidget* m_floatingPane;
         QRect m_paneGeometry;
-        int m_cursorDelta;
+        QPoint m_Pos;
         int m_position;
+        int m_cursorDelta;
         int m_cornerState;
+        bool m_dragging;
 };
 
 #endif // DOCKINGPANEGLOWWIDGET_H
