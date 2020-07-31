@@ -62,16 +62,16 @@ class DockingPaneFlyoutWidget : public QWidget
 
     protected:
         virtual void paintEvent(QPaintEvent* event) override;
-        virtual void closeEvent(QCloseEvent *event) override;
-        virtual void resizeEvent(QResizeEvent * event) override;
+        virtual void closeEvent(QCloseEvent* event) override;
+        virtual void resizeEvent(QResizeEvent* event) override;
 
-        virtual void mouseMoveEvent(QMouseEvent *e) override;
-        virtual void mouseReleaseEvent(QMouseEvent *e) override;
-        virtual void mousePressEvent(QMouseEvent *e) override;
-        virtual bool eventFilter(QObject *obj, QEvent *event) override;
+        virtual void mouseMoveEvent(QMouseEvent* event) override;
+        virtual void mouseReleaseEvent(QMouseEvent* event) override;
+        virtual void mousePressEvent(QMouseEvent* event) override;
+        virtual bool eventFilter(QObject* obj, QEvent* event) override;
 
-        virtual void enterEvent(QEvent *e) override;
-        virtual void leaveEvent(QEvent *e) override;
+        virtual void enterEvent(QEvent* event) override;
+        virtual void leaveEvent(QEvent* event) override;
 
     private:
         void setActivePane(bool active);
