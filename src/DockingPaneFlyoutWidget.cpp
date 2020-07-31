@@ -17,7 +17,6 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "math.h"
 #include <QApplication>
 #include <QDebug>
 #include <QGridLayout>
