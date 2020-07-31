@@ -30,15 +30,17 @@
 #include "DockingToolButton.h"
 
 DockingPaneFlyoutWidget::DockingPaneFlyoutWidget(bool hasFocus, DockingPaneContainer *container, DockingPaneContainer *pane, FlyoutPosition pos, QWidget *widget, QWidget *parent) :
-    QWidget(parent)
+    QWidget(parent),
+    m_pane(pane),
+    m_container(container),
+    m_clientWidget(widget),
+    m_pos(pos),
+    m_isActive(false),
+    m_dragMode(false),
+    m_resizeMode(false)
 {
     QVBoxLayout *vLayout;
     QHBoxLayout *hLayout;
-
-    m_pane = pane;
-    m_container = container;
-    m_pos = pos;
-    m_resizeMode = false;
 
     vLayout = new QVBoxLayout();
 
@@ -50,44 +52,31 @@ DockingPaneFlyoutWidget::DockingPaneFlyoutWidget(bool hasFocus, DockingPaneConta
         QTimer::singleShot(1000, this, &DockingPaneFlyoutWidget::autoHideTimeout);
     }
 
-    m_isActive = false;
-    m_clientWidget = widget;
-    m_dragMode = false;
-
     m_headerWidget = new QWidget();
-
     m_headerWidget->setAccessibleName("headerWidget");
     m_headerWidget->setObjectName("headerWidget");
-
     m_headerWidget->setMinimumHeight(6+m_headerWidget->fontMetrics().height());
     m_headerWidget->setMaximumHeight(6+m_headerWidget->fontMetrics().height());
 
     hLayout = new QHBoxLayout();
 
     m_titleWidget = new DockingPaneTitleWidget(m_pane->name());
-
+    m_titleWidget->setFocusProxy(widget);
     connect(m_titleWidget, &DockingPaneTitleWidget::titleBarStartMove, this, &DockingPaneFlyoutWidget::startDragFlyoutTitle);
     connect(m_titleWidget, &DockingPaneTitleWidget::titleBarEndMove, this, &DockingPaneFlyoutWidget::endDragFlyoutTitle);
     connect(m_titleWidget, &DockingPaneTitleWidget::titleBarMoved, this, &DockingPaneFlyoutWidget::moveDragFlyoutTitle);
-
-    m_titleWidget->setFocusProxy(widget);
-
     hLayout->addWidget(m_titleWidget);
 
     m_closeButton = new DockingToolButton(DockingToolButton::closeButtonInactive);
     m_pinButton = new DockingToolButton(DockingToolButton::unpinButtonInactive);
-
-    connect(m_closeButton, &DockingToolButton::clicked, this, &DockingPaneFlyoutWidget::closeContainer);
-
-    connect(m_pinButton, &DockingToolButton::clicked, this, &DockingPaneFlyoutWidget::unpinContainer);
-
     m_closeButton->setMaximumWidth(16);
     m_pinButton->setMaximumWidth(16);
-
+    connect(m_closeButton, &DockingToolButton::clicked, this, &DockingPaneFlyoutWidget::closeContainer);
+    connect(m_pinButton, &DockingToolButton::clicked, this, &DockingPaneFlyoutWidget::unpinContainer);
     hLayout->addWidget(m_pinButton);
     hLayout->addWidget(m_closeButton);
-    hLayout->addSpacerItem(new QSpacerItem(2,0, QSizePolicy::Fixed));
 
+    hLayout->addSpacerItem(new QSpacerItem(2,0, QSizePolicy::Fixed));
     hLayout->setMargin(0);
     hLayout->setSpacing(0);
 
@@ -97,15 +86,12 @@ DockingPaneFlyoutWidget::DockingPaneFlyoutWidget(bool hasFocus, DockingPaneConta
     vLayout->addWidget(m_headerWidget);
 
     m_clientLayout = new QGridLayout();
-
     m_clientLayout->setMargin(0);
     m_clientLayout->setVerticalSpacing(0);
     m_clientLayout->addWidget(widget);
 
     vLayout->addLayout(m_clientLayout);
-
     vLayout->setSpacing(0);
-
     this->setLayout(vLayout);
 
     m_clientWidget->show();

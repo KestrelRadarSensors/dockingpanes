@@ -85,13 +85,14 @@ class DockingPaneFlyoutWidget : public QWidget
         QWidget *m_clientWidget;
         DockingPaneTitleWidget *m_titleWidget;
         QGridLayout *m_clientLayout;
-        bool m_isActive;
+
         QWidget *m_headerWidget;
         DockingToolButton *m_closeButton;
         DockingToolButton *m_pinButton;
         QPoint m_initialPos;
         FlyoutPosition m_pos;
         int m_size;
+        bool m_isActive;
         bool m_dragMode;
         bool m_resizeMode;
 };
