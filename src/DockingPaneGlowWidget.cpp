@@ -48,58 +48,45 @@ void DockingPaneGlowWidget::updatePosition(void)
         case DockingPaneGlowWidget::Left: {
             this->move(pos.x()-9, pos.y());
             this->resize(9, size.height());
-
             break;
         }
-
         case DockingPaneGlowWidget::Right: {
             this->move(pos.x()+size.width(), pos.y());
             this->resize(9, size.height());
-
             break;
         }
-
         case DockingPaneGlowWidget::Top: {
             this->move(pos.x()-9, pos.y()-9);
             this->resize(size.width()+18, 9);
-
             break;
         }
-
         case DockingPaneGlowWidget::Bottom: {
             this->move(pos.x()-9, pos.y()+size.height());
             this->resize(size.width()+18, 9);
-
             break;
         }
     }
 }
 
-void DockingPaneGlowWidget::mousePressEvent(QMouseEvent *e)
+void DockingPaneGlowWidget::mousePressEvent(QMouseEvent* event)
 {
-    if (e->button() == Qt::LeftButton) {
-        m_cursorDelta = mapToGlobal(e->pos()).x()-this->pos().x();
-
+    if (event->button() == Qt::LeftButton) {
+        m_cursorDelta = mapToGlobal(event->pos()).x()-this->pos().x();
         m_cornerState = 0;
 
         if ( (m_position==DockingPaneGlowWidget::Top) || (m_position==DockingPaneGlowWidget::Bottom) ) {
             if (m_cursorDelta<9) {
                 m_cornerState = 1;
             }
-
             if (m_cursorDelta>this->width()-9) {
                 m_cornerState = 2;
             }
         }
 
         m_Pos = QCursor::pos();
-
         m_paneGeometry = m_floatingPane->geometry();
-
         m_dragging = true;
-
         qApp->setActiveWindow(m_floatingPane);
-
         grabMouse();
     }
 }
@@ -111,16 +98,12 @@ void DockingPaneGlowWidget::updateCursor()
     switch(m_position) {
         case DockingPaneGlowWidget::Left: {
             setCursor(Qt::SizeHorCursor);
-
             break;
         }
-
         case DockingPaneGlowWidget::Right: {
             setCursor(Qt::SizeHorCursor);
-
             break;
         }
-
         case DockingPaneGlowWidget::Top: {
             if (cursorPos<9) {
                 setCursor(Qt::SizeFDiagCursor);
@@ -131,10 +114,8 @@ void DockingPaneGlowWidget::updateCursor()
                     setCursor(Qt::SizeVerCursor);
                 }
             }
-
             break;
         }
-
         case DockingPaneGlowWidget::Bottom: {
             if (cursorPos<9) {
                 setCursor(Qt::SizeBDiagCursor);
@@ -145,7 +126,6 @@ void DockingPaneGlowWidget::updateCursor()
                     setCursor(Qt::SizeVerCursor);
                 }
             }
-
             break;
         }
     }
@@ -166,81 +146,58 @@ void DockingPaneGlowWidget::mouseMoveEvent(QMouseEvent*)
     if (m_dragging) {
         QPoint delta;
         QPoint pos = QCursor::pos();
-
         delta = m_Pos-pos;
-
         QRect rc = m_floatingPane->geometry();
 
         switch(m_position) {
             case DockingPaneGlowWidget::Left: {
                 rc.adjust(-delta.x(), 0, 0, 0);
-
                 if (rc.left()<=m_paneGeometry.right()-m_floatingPane->minimumWidth()) {
                     m_floatingPane->setGeometry(rc);
                 }
-
                 break;
             }
-
             case DockingPaneGlowWidget::Right: {
                 rc.adjust(0,0,-delta.x(), 0);
-
                 m_floatingPane->setGeometry(rc);
-
                 break;
             }
-
             case DockingPaneGlowWidget::Top: {
                 rc.adjust(0, -delta.y(), 0, 0);
-
                 if (m_cornerState==1) {
                     QRect tempRc = rc;
-
                     tempRc.adjust(-delta.x(), 0, 0, 0);
-
                     if (tempRc.left()<=m_paneGeometry.right()-m_floatingPane->minimumWidth()) {
                         rc = tempRc;
                     }
                 }
-
                 if (m_cornerState==2) {
                     rc.adjust(0,0,-delta.x(), 0);
                 }
-
                 if (rc.top()<=m_paneGeometry.bottom()-m_floatingPane->minimumHeight()) {
                     m_floatingPane->setGeometry(rc);
                 }
-
                 break;
             }
-
             case DockingPaneGlowWidget::Bottom: {
                 rc.adjust(0,0,0, -delta.y());
-
                 if (m_cornerState==1) {
                     QRect tempRc = rc;
-
                     tempRc.adjust(-delta.x(), 0, 0, 0);
-
                     if (tempRc.left()<=m_paneGeometry.right()-m_floatingPane->minimumWidth()) {
                         rc = tempRc;
                     }
                 }
-
                 if (m_cornerState==2) {
                     rc.adjust(0,0,-delta.x(), 0);
                 }
-
                 m_floatingPane->setGeometry(rc);
-
                 break;
             }
         }
 
         updatePosition();
-
         Q_EMIT glowResized();
-
         m_Pos = pos;
     } else {
         updateCursor();
