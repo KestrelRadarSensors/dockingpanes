@@ -152,24 +152,18 @@ void DockingPaneGlowWidget::updateCursor()
     }
 }
 
-void DockingPaneGlowWidget::enterEvent(QEvent *e)
+void DockingPaneGlowWidget::enterEvent(QEvent*)
 {
-    Q_UNUSED(e);
-
     updateCursor();
 }
 
-void DockingPaneGlowWidget::leaveEvent(QEvent *e)
+void DockingPaneGlowWidget::leaveEvent(QEvent*)
 {
-    Q_UNUSED(e);
-
     this->unsetCursor();
 }
 
-void DockingPaneGlowWidget::mouseMoveEvent(QMouseEvent *e)
+void DockingPaneGlowWidget::mouseMoveEvent(QMouseEvent*)
 {
-    Q_UNUSED(e);
-
     if (m_dragging) {
         QPoint delta;
         QPoint pos = QCursor::pos();
@@ -254,18 +248,13 @@ void DockingPaneGlowWidget::mouseMoveEvent(QMouseEvent *e)
     }
 }
 
-void DockingPaneGlowWidget::mouseReleaseEvent(QMouseEvent *e)
+void DockingPaneGlowWidget::mouseReleaseEvent(QMouseEvent*)
 {
-    Q_UNUSED(e);
-
     m_dragging = false;
-
     releaseMouse();
 }
 
-void DockingPaneGlowWidget::paintEvent(QPaintEvent* event)
+void DockingPaneGlowWidget::paintEvent(QPaintEvent*)
 {
-    Q_UNUSED(event);
-
     return;
 }
