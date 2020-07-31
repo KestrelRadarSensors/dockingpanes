@@ -22,7 +22,7 @@
 #include "DockingPaneGlow.h"
 #include "DockingPaneGlowWidget.h"
 
-DockingPaneGlow::DockingPaneGlow(QWidget *floatingPane, QObject *parent) :
+DockingPaneGlow::DockingPaneGlow(QWidget* floatingPane, QObject* parent) :
     QObject(parent)
 {
     m_leftGlow = new DockingPaneGlowWidget(floatingPane, DockingPaneGlowWidget::Left, qobject_cast<QWidget*>(parent));

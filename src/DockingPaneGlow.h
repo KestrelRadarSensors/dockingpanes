@@ -38,10 +38,10 @@ class DockingPaneGlow : public QObject
     private:
         void onGlowResized(void);
 
-        DockingPaneGlowWidget *m_leftGlow;
-        DockingPaneGlowWidget *m_rightGlow;
-        DockingPaneGlowWidget *m_topGlow;
-        DockingPaneGlowWidget *m_bottomGlow;
+        DockingPaneGlowWidget* m_leftGlow;
+        DockingPaneGlowWidget* m_rightGlow;
+        DockingPaneGlowWidget* m_topGlow;
+        DockingPaneGlowWidget* m_bottomGlow;
 };
 
 #endif // DOCKINGPANEGLOW_H
