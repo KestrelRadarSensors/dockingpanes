@@ -29,7 +29,7 @@ class DockingPaneGlow : public QObject
     Q_OBJECT
 
     public:
-        explicit DockingPaneGlow(QWidget *floatingPane, QObject *parent = 0);
+        explicit DockingPaneGlow(QWidget* floatingPane, QObject* parent = nullptr);
         ~DockingPaneGlow();
 
         void raise(void);
