@@ -34,6 +34,8 @@
 #include <QApplication>
 #include <QUuid>
 #include "DockingPaneGlow.h"
+#include "DockingPaneTitleWidget.h"
+#include "DockingToolButton.h"
 
 DockingPaneTabbedContainer::DockingPaneTabbedContainer(QWidget *parent) :
     DockingPaneContainer(parent)
