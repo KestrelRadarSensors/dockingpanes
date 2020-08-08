@@ -103,33 +103,29 @@ void DockingPaneTitleWidget::drawPattern(QPainter *p, int x, int y, int w, int h
 
 void DockingPaneTitleWidget::mouseMoveEvent(QMouseEvent* event)
 {
-    emit titleBarMoved(this->mapToGlobal(e->pos()));
+    Q_EMIT titleBarMoved(this->mapToGlobal(event->pos()));
 }
 
 void DockingPaneTitleWidget::mouseReleaseEvent(QMouseEvent* event)
 {
-    if (e->button() == Qt::LeftButton) {
-        emit titleBarEndMove(this->mapToGlobal(e->pos()));
-
-        e->accept();
+    if (event->button() == Qt::LeftButton) {
+        Q_EMIT titleBarEndMove(this->mapToGlobal(event->pos()));
+        event->accept();
     }
 }
 
 void DockingPaneTitleWidget::mousePressEvent(QMouseEvent* event)
 {
-    if (e->button() == Qt::LeftButton) {
+    if (event->button() == Qt::LeftButton) {
         this->setFocus();
-
-        e->accept();
-
-        emit titleBarStartMove(this->mapToGlobal(e->pos()));
+        event->accept();
+        Q_EMIT titleBarStartMove(this->mapToGlobal(event->pos()));
     }
 }
 
 void DockingPaneTitleWidget::setActive(bool active)
 {
     m_active = active;
-
     update();
 }
 
