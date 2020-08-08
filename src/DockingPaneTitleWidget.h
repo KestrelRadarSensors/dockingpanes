@@ -27,38 +27,30 @@ class QPoint;
 class DockingPaneTitleWidget : public QWidget
 {
     Q_OBJECT
-
     public:
-        explicit DockingPaneTitleWidget(QString text=QString(), QWidget *parent = 0);
+        explicit DockingPaneTitleWidget(QString text = QString(), QWidget *parent = nullptr);
+        virtual ~DockingPaneTitleWidget() = default;
 
         void setText(QString text);
         void setActive(bool active);
 
-    protected:
-        void paintEvent(QPaintEvent* event);
-        void resizeEvent(QResizeEvent *e);
-        void mousePressEvent(QMouseEvent *e);
-
-        void mouseMoveEvent(QMouseEvent *e);
-        void mouseReleaseEvent(QMouseEvent *e);
-
-
-    signals:
+    Q_SIGNALS:
         void titleBarStartMove(QPoint pos);
         void titleBarEndMove(QPoint pos);
         void titleBarMoved(QPoint pos);
 
+    protected:
+        virtual void paintEvent(QPaintEvent* event) override;
+        virtual void resizeEvent(QResizeEvent* event) override;
+        virtual void mousePressEvent(QMouseEvent* event) override;
+        virtual void mouseMoveEvent(QMouseEvent* event) override;
+        virtual void mouseReleaseEvent(QMouseEvent* event) override;
+
     private:
         void drawPattern(QPainter *p, int x, int y, int w, int h);
-        
-    private slots:
         void onFocusChanged(QWidget *old,QWidget *now);
-
-    public slots:
-
-    private:
         QString m_text;
-        bool m_active;        
+        bool m_active;
 };
 
 #endif // DOCKINGPANETITLEWIDGET_H
