@@ -20,13 +20,14 @@
 #ifndef DOCKINGPANETABBEDCONTAINER_H
 #define DOCKINGPANETABBEDCONTAINER_H
 
-#include <QWidget>
-#include "DockingPaneContainer.h"
-#include <QStackedWidget>
 #include <QList>
-#include "DockingPaneFlyoutWidget.h"
+
+#include "DockingPaneContainer.h"
 
 class QMouseEvent;
+class QStackedWidget;
+
+class DockingPaneFlyoutWidget;
 class DockingPaneManager;
 
 class DockingPaneTabbedContainer : public DockingPaneContainer
