@@ -33,8 +33,11 @@
 #include <QVBoxLayout>
 
 #include "DockingPaneFlyoutWidget.h"
+#include "DockingPaneGlow.h"
 #include "DockingPaneManager.h"
 #include "DockingPaneTabbedContainer.h"
+#include "DockingPaneTitleWidget.h"
+#include "DockingToolButton.h"
 
 DockingPaneTabbedContainer::DockingPaneTabbedContainer(QWidget *parent) :
     DockingPaneContainer(parent)
