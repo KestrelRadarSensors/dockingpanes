@@ -32,31 +32,31 @@ class DockingPaneManager;
 
 class DockingPaneTabbedContainer : public DockingPaneContainer
 {
-        Q_OBJECT
-
+    Q_OBJECT
     public:
         friend class DockingPaneManager;
         explicit DockingPaneTabbedContainer(QWidget *parent = nullptr);
         ~DockingPaneTabbedContainer();
 
         bool addPane(DockingPaneContainer *child);
-        virtual void saveLayout(QDomNode *parentNode, bool includeGeometry=false);
         void restoreChildWidgets(void);
-        virtual int getPaneCount(void);
-        virtual DockingPaneContainer *getPane(int index);
-        virtual DockingPaneFlyoutWidget *openFlyout(bool hasFocus, QWidget *parent, FlyoutPosition pos, DockingPaneContainer *pane);
-        virtual void setClientWidget(QWidget *widget);
         void setVisiblePane(DockingPaneContainer *pane);
         bool containsPane(DockingPaneContainer *pane);
         void onCloseButtonClicked(void);
         void onPinButtonClicked(void);
+        // DockingPaneContainer overrides
+        virtual int getPaneCount(void) override;
+        virtual DockingPaneContainer *getPane(int index) override;
+        virtual void saveLayout(QDomNode *parentNode, bool includeGeometry=false) override;
+        virtual DockingPaneFlyoutWidget *openFlyout(bool hasFocus, QWidget *parent, FlyoutPosition pos, DockingPaneContainer *pane) override;
+        virtual void setClientWidget(QWidget *widget) override;
 
     protected:
-        virtual void paintEvent(QPaintEvent* event);
-        virtual void mousePressEvent(QMouseEvent *e);
-        virtual void mouseReleaseEvent(QMouseEvent *e);
-        virtual void mouseMoveEvent(QMouseEvent *e);
-        virtual void resizeEvent(QResizeEvent * event);
+        virtual void paintEvent(QPaintEvent* event) override;
+        virtual void mousePressEvent(QMouseEvent* event) override;
+        virtual void mouseReleaseEvent(QMouseEvent* event) override;
+        virtual void mouseMoveEvent(QMouseEvent*event) override;
+        virtual void resizeEvent(QResizeEvent* event) override;
         void onStartDragTitle(QPoint pos);
         void onEndDragTitle(QPoint pos);
         void onMoveDragTitle(QPoint pos);
