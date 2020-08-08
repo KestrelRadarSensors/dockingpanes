@@ -27,9 +27,8 @@ class QPoint;
 class DockingPaneTitleWidget : public QWidget
 {
     Q_OBJECT
-
     public:
-        explicit DockingPaneTitleWidget(QString text=QString(), QWidget *parent = 0);
+        explicit DockingPaneTitleWidget(QString text=QString(), QWidget *parent = nullptr);
 
         void setText(QString text);
         void setActive(bool active);
@@ -50,7 +49,7 @@ class DockingPaneTitleWidget : public QWidget
 
     private:
         void drawPattern(QPainter *p, int x, int y, int w, int h);
-        
+
     private slots:
         void onFocusChanged(QWidget *old,QWidget *now);
 
@@ -58,7 +57,7 @@ class DockingPaneTitleWidget : public QWidget
 
     private:
         QString m_text;
-        bool m_active;        
+        bool m_active;
 };
 
 #endif // DOCKINGPANETITLEWIDGET_H

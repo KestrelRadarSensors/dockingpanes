@@ -17,13 +17,13 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "DockingPaneTitleWidget.h"
-#include <QPainter>
-#include <QFont>
-#include <QDebug>
-#include <QMouseEvent>
-#include <math.h>
 #include <QApplication>
+#include <QDebug>
+#include <QFont>
+#include <QMouseEvent>
+#include <QPainter>
+
+#include "DockingPaneTitleWidget.h"
 
 DockingPaneTitleWidget::DockingPaneTitleWidget(QString text, QWidget *parent) :
     QWidget(parent)
