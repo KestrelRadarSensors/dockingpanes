@@ -17,25 +17,24 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "DockingPaneTabbedContainer.h"
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <QWidget>
-#include <QSpacerItem>
-#include <QGridLayout>
+#include <math.h>
+#include <QApplication>
+#include <QColor>
 #include <QDebug>
-#include "DockingPaneManager.h"
+#include <QDomDocument>
+#include <QGridLayout>
+#include <QHBoxLayout>
 #include <QPaintEvent>
 #include <QPainter>
 #include <QPen>
-#include <QColor>
-#include <QDomDocument>
-#include <math.h>
-#include <QApplication>
+#include <QSpacerItem>
+#include <QStackedWidget>
 #include <QUuid>
-#include "DockingPaneGlow.h"
-#include "DockingPaneTitleWidget.h"
-#include "DockingToolButton.h"
+#include <QVBoxLayout>
+
+#include "DockingPaneFlyoutWidget.h"
+#include "DockingPaneManager.h"
+#include "DockingPaneTabbedContainer.h"
 
 DockingPaneTabbedContainer::DockingPaneTabbedContainer(QWidget *parent) :
     DockingPaneContainer(parent)
@@ -43,8 +42,8 @@ DockingPaneTabbedContainer::DockingPaneTabbedContainer(QWidget *parent) :
     QVBoxLayout *vLayout;
     QHBoxLayout *hLayout;
 
-    m_draggedPane = NULL;
-    m_floatingGlow = NULL;
+    m_draggedPane = nullptr;
+    m_floatingGlow = nullptr;
 
     vLayout = new QVBoxLayout();
 
@@ -61,9 +60,9 @@ DockingPaneTabbedContainer::DockingPaneTabbedContainer(QWidget *parent) :
 
     m_titleWidget = new DockingPaneTitleWidget("Widget");
 
-    connect(m_titleWidget, SIGNAL(titleBarStartMove(QPoint)), this, SLOT(onStartDragTitle(QPoint)));
-    connect(m_titleWidget, SIGNAL(titleBarEndMove(QPoint)), this, SLOT(onEndDragTitle(QPoint)));
-    connect(m_titleWidget, SIGNAL(titleBarMoved(QPoint)), this, SLOT(onMoveDragTitle(QPoint)));
+    connect(m_titleWidget, &DockingPaneTitleWidget::titleBarStartMove, this, &DockingPaneTabbedContainer::onStartDragTitle);
+    connect(m_titleWidget, &DockingPaneTitleWidget::titleBarEndMove, this, &DockingPaneTabbedContainer::onEndDragTitle);
+    connect(m_titleWidget, &DockingPaneTitleWidget::titleBarMoved, this, &DockingPaneTabbedContainer::onMoveDragTitle);
 
     this->setFocusPolicy(Qt::StrongFocus);
 
@@ -72,8 +71,8 @@ DockingPaneTabbedContainer::DockingPaneTabbedContainer(QWidget *parent) :
     m_closeButton = new DockingToolButton(DockingToolButton::closeButtonInactive);
     m_pinButton = new DockingToolButton(DockingToolButton::pinButtonInactive);
 
-    connect(m_closeButton, SIGNAL(clicked()), this, SLOT(onCloseButtonClicked()));
-    connect(m_pinButton, SIGNAL(clicked()), this, SLOT(onPinButtonClicked()));
+    connect(m_closeButton, &DockingToolButton::clicked, this, &DockingPaneTabbedContainer::onCloseButtonClicked);
+    connect(m_pinButton, &DockingToolButton::clicked, this, &DockingPaneTabbedContainer::onPinButtonClicked);
 
     m_closeButton->setMaximumWidth(16);
     m_pinButton->setMaximumWidth(16);
@@ -111,7 +110,7 @@ DockingPaneTabbedContainer::DockingPaneTabbedContainer(QWidget *parent) :
 
     updateMargins();
 
-    connect(qApp, SIGNAL(focusChanged(QWidget*,QWidget*)), this, SLOT(onFocusChanged(QWidget *,QWidget*)));
+    connect(qApp, &QApplication::focusChanged, this, &DockingPaneTabbedContainer::onFocusChanged);
 
     m_stackedWidget->setFocusPolicy(Qt::StrongFocus);
 
@@ -180,18 +179,14 @@ bool DockingPaneTabbedContainer::addPane(DockingPaneContainer *child)
     return(false);
 }
 
-void DockingPaneTabbedContainer::resizeEvent(QResizeEvent * event)
+void DockingPaneTabbedContainer::resizeEvent(QResizeEvent*)
 {
-    Q_UNUSED(event);
-
     updateMargins();
 }
 
-void DockingPaneTabbedContainer::paintEvent(QPaintEvent* event)
+void DockingPaneTabbedContainer::paintEvent(QPaintEvent*)
 {
     int i;
-
-    Q_UNUSED(event);
 
     QPainter p(this);
 
@@ -426,7 +421,7 @@ void DockingPaneTabbedContainer::mouseReleaseEvent(QMouseEvent *e)
             dockingManager()->floatingPaneEndMove(m_draggedPane, this->mapToGlobal(e->pos()));
         }
 
-        m_draggedPane = NULL;
+        m_draggedPane = nullptr;
 
         releaseMouse();
 
@@ -441,7 +436,7 @@ void DockingPaneTabbedContainer::mouseReleaseEvent(QMouseEvent *e)
 
                 if (m_floatingGlow) {
                     delete m_floatingGlow;
-                    m_floatingGlow = NULL;
+                    m_floatingGlow = nullptr;
                 }
             } else {
                 dockingManager()->replacePane(this, m_paneList.at(0));
@@ -627,7 +622,7 @@ void DockingPaneTabbedContainer::onUnpinContainer(void)
 
     dockingManager()->unpinPane(this);
 
-    m_flyoutWidget = NULL;
+    m_flyoutWidget = nullptr;
 }
 
 void DockingPaneTabbedContainer::onCloseContainer(void)
@@ -668,7 +663,7 @@ void DockingPaneTabbedContainer::onCloseContainer(void)
 
     m_flyoutWidget->endDrag();
 
-    m_flyoutWidget = NULL;
+    m_flyoutWidget = nullptr;
 }
 
 
@@ -715,11 +710,11 @@ DockingPaneFlyoutWidget *DockingPaneTabbedContainer::openFlyout(bool hasFocus, Q
 {
     m_flyoutWidget = new DockingPaneFlyoutWidget(hasFocus, this, pane, (DockingPaneFlyoutWidget::FlyoutPosition) pos,  m_stackedWidget->widget(m_paneList.indexOf(pane)), parent);
 
-    connect(m_flyoutWidget, SIGNAL(unpinContainer()), this, SLOT(onUnpinContainer()));
-    connect(m_flyoutWidget, SIGNAL(closeContainer()), this, SLOT(onCloseContainer()));
-    connect(m_flyoutWidget, SIGNAL(startDragFlyoutTitle(QPoint)), this, SLOT(onStartDragFlyoutTitle(QPoint)));
-    connect(m_flyoutWidget, SIGNAL(endDragFlyoutTitle(QPoint)), this, SLOT(onEndDragFlyoutTitle(QPoint)));
-    connect(m_flyoutWidget, SIGNAL(moveDragFlyoutTitle(QPoint)), this, SLOT(onMoveDragFlyoutTitle(QPoint)));
+    connect(m_flyoutWidget, &DockingPaneFlyoutWidget::unpinContainer, this, &DockingPaneTabbedContainer::onUnpinContainer);
+    connect(m_flyoutWidget, &DockingPaneFlyoutWidget::closeContainer, this, &DockingPaneTabbedContainer::onCloseContainer);
+    connect(m_flyoutWidget, &DockingPaneFlyoutWidget::startDragFlyoutTitle, this, &DockingPaneTabbedContainer::onStartDragFlyoutTitle);
+    connect(m_flyoutWidget, &DockingPaneFlyoutWidget::endDragFlyoutTitle, this, &DockingPaneTabbedContainer::onEndDragFlyoutTitle);
+    connect(m_flyoutWidget, &DockingPaneFlyoutWidget::moveDragFlyoutTitle, this, &DockingPaneTabbedContainer::onMoveDragFlyoutTitle);
 
     m_flyoutWidget->show();
 
@@ -728,7 +723,7 @@ DockingPaneFlyoutWidget *DockingPaneTabbedContainer::openFlyout(bool hasFocus, Q
 
 void DockingPaneTabbedContainer::onStartDragFlyoutTitle(QPoint pos)
 {
-    m_draggedPane = NULL;
+    m_draggedPane = nullptr;
 
     dockingManager()->floatingPaneStartMove(m_flyoutWidget->pane(), pos);
 
@@ -753,11 +748,11 @@ void DockingPaneTabbedContainer::onEndDragFlyoutTitle(QPoint pos)
         dockingManager()->deletePane(this);
     }
 
-    m_draggedPane = NULL;
+    m_draggedPane = nullptr;
 
     m_flyoutWidget->endDrag();
 
-    m_flyoutWidget = NULL;
+    m_flyoutWidget = nullptr;
 }
 
 void DockingPaneTabbedContainer::onMoveDragFlyoutTitle(QPoint pos)
@@ -815,10 +810,8 @@ void DockingPaneTabbedContainer::onMoveDragFlyoutTitle(QPoint pos)
     }
 }
 
-void DockingPaneTabbedContainer::onFocusChanged(QWidget *old, QWidget *now)
+void DockingPaneTabbedContainer::onFocusChanged(QWidget*, QWidget *now)
 {
-    Q_UNUSED(old);
-
     this->setActivePane(this->isAncestorOf(now));
 
     if (now==m_stackedWidget) {
@@ -894,7 +887,7 @@ void DockingPaneTabbedContainer::onCloseButtonClicked(void)
 
             if (m_floatingGlow) {
                 delete m_floatingGlow;
-                m_floatingGlow = NULL;
+                m_floatingGlow = nullptr;
             }
         } else {
             dockingManager()->replacePane(this, m_paneList.at(0));
