@@ -39,12 +39,12 @@ class DockingPaneSplitterContainer : public DockingPaneBase
             splitHorizontal
         };
 
-    public:
-        DockingPaneSplitterContainer(QWidget *parent = NULL, SplitterDirection direction=splitVertical);
+        DockingPaneSplitterContainer(QWidget* parent = nullptr, SplitterDirection direction=splitVertical);
+        virtual ~DockingPaneSplitterContainer() = default;
 
         SplitterDirection direction(void);
 
-        virtual void saveLayout(QDomNode *parentNode, bool includeGeometry=false);
+        virtual void saveLayout(QDomNode *parentNode, bool includeGeometry=false) override;
 
     private:
         QSplitter *m_splitterWidget;
