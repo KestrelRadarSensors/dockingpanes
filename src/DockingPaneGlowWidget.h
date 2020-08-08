@@ -35,37 +35,31 @@ class DockingPaneGlowWidget : public QWidget
             Bottom
         };
 
-    public:
-        explicit DockingPaneGlowWidget(QWidget *floatingPane, Position pos, QWidget *parent = 0);
+        explicit DockingPaneGlowWidget(QWidget* floatingPane, Position pos, QWidget* parent = nullptr);
 
         void updatePosition(void);
+
+    Q_SIGNALS:
+        void glowResized();
+
+    protected:
+        virtual void paintEvent(QPaintEvent* event) override;
+        virtual void mousePressEvent(QMouseEvent* event) override;
+        virtual void mouseMoveEvent(QMouseEvent* event) override;
+        virtual void mouseReleaseEvent(QMouseEvent* event) override;
+        virtual void enterEvent(QEvent* event) override;
+        virtual void leaveEvent(QEvent* event) override;
 
     private:
         void updateCursor();
 
-
-    protected:
-        virtual void paintEvent(QPaintEvent* event);
-
-        virtual void mousePressEvent(QMouseEvent *e);
-        virtual void mouseMoveEvent(QMouseEvent *e);
-        virtual void mouseReleaseEvent(QMouseEvent *e);
-        virtual void enterEvent(QEvent *e);
-        virtual void leaveEvent(QEvent *e);
-
-    signals:
-        void glowResized();
-        
-    public slots:
-        
-    private:
-        QWidget *m_floatingPane;
-        bool m_dragging;
-        QPoint m_Pos;
+        QWidget* m_floatingPane;
         QRect m_paneGeometry;
-        int m_cursorDelta;
+        QPoint m_Pos;
         int m_position;
+        int m_cursorDelta;
         int m_cornerState;
+        bool m_dragging;
 };
 
 #endif // DOCKINGPANEGLOWWIDGET_H
