@@ -38,18 +38,14 @@ DockingPaneTitleWidget::DockingPaneTitleWidget(QString text, QWidget *parent) :
     connect(qApp, &QApplication::focusChanged, this, &DockingPaneTitleWidget::onFocusChanged);
 }
 
-void DockingPaneTitleWidget::resizeEvent(QResizeEvent *e)
+void DockingPaneTitleWidget::resizeEvent(QResizeEvent*)
 {
-    Q_UNUSED(e);
-
     this->setMinimumHeight(6+this->fontMetrics().height());
     this->setMaximumHeight(6+this->fontMetrics().height());
 }
 
-void DockingPaneTitleWidget::paintEvent(QPaintEvent* event)
+void DockingPaneTitleWidget::paintEvent(QPaintEvent*)
 {
-    Q_UNUSED(event);
-
     QPainter p(this);
     QRect drawnRect;
 
@@ -105,12 +101,12 @@ void DockingPaneTitleWidget::drawPattern(QPainter *p, int x, int y, int w, int h
     p->fillRect(x,((y+h)/2)-2,w, 5, QBrush(pixMap));
 }
 
-void DockingPaneTitleWidget::mouseMoveEvent(QMouseEvent *e)
+void DockingPaneTitleWidget::mouseMoveEvent(QMouseEvent* event)
 {
     emit titleBarMoved(this->mapToGlobal(e->pos()));
 }
 
-void DockingPaneTitleWidget::mouseReleaseEvent(QMouseEvent *e)
+void DockingPaneTitleWidget::mouseReleaseEvent(QMouseEvent* event)
 {
     if (e->button() == Qt::LeftButton) {
         emit titleBarEndMove(this->mapToGlobal(e->pos()));
@@ -119,7 +115,7 @@ void DockingPaneTitleWidget::mouseReleaseEvent(QMouseEvent *e)
     }
 }
 
-void DockingPaneTitleWidget::mousePressEvent(QMouseEvent *e)
+void DockingPaneTitleWidget::mousePressEvent(QMouseEvent* event)
 {
     if (e->button() == Qt::LeftButton) {
         this->setFocus();
@@ -137,10 +133,8 @@ void DockingPaneTitleWidget::setActive(bool active)
     update();
 }
 
-void DockingPaneTitleWidget::onFocusChanged(QWidget *old,QWidget *now)
+void DockingPaneTitleWidget::onFocusChanged(QWidget*, QWidget *now)
 {
-    Q_UNUSED(old);
-
     setActive(this->isAncestorOf(now));
 }
 
