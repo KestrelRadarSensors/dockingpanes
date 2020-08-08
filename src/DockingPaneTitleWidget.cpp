@@ -35,7 +35,7 @@ DockingPaneTitleWidget::DockingPaneTitleWidget(QString text, QWidget *parent) :
 
     this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
-    connect(qApp, SIGNAL(focusChanged(QWidget*,QWidget*)), this, SLOT(onFocusChanged(QWidget *,QWidget*)));
+    connect(qApp, &QApplication::focusChanged, this, &DockingPaneTitleWidget::onFocusChanged);
 }
 
 void DockingPaneTitleWidget::resizeEvent(QResizeEvent *e)
