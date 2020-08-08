@@ -60,9 +60,9 @@ DockingPaneTabbedContainer::DockingPaneTabbedContainer(QWidget *parent) :
 
     m_titleWidget = new DockingPaneTitleWidget("Widget");
 
-    connect(m_titleWidget, SIGNAL(titleBarStartMove(QPoint)), this, SLOT(onStartDragTitle(QPoint)));
-    connect(m_titleWidget, SIGNAL(titleBarEndMove(QPoint)), this, SLOT(onEndDragTitle(QPoint)));
-    connect(m_titleWidget, SIGNAL(titleBarMoved(QPoint)), this, SLOT(onMoveDragTitle(QPoint)));
+    connect(m_titleWidget, &DockingPaneTitleWidget::titleBarStartMove, this, &DockingPaneTabbedContainer::onStartDragTitle);
+    connect(m_titleWidget, &DockingPaneTitleWidget::titleBarEndMove, this, &DockingPaneTabbedContainer::onEndDragTitle);
+    connect(m_titleWidget, &DockingPaneTitleWidget::titleBarMoved, this, &DockingPaneTabbedContainer::onMoveDragTitle);
 
     this->setFocusPolicy(Qt::StrongFocus);
 
@@ -71,8 +71,8 @@ DockingPaneTabbedContainer::DockingPaneTabbedContainer(QWidget *parent) :
     m_closeButton = new DockingToolButton(DockingToolButton::closeButtonInactive);
     m_pinButton = new DockingToolButton(DockingToolButton::pinButtonInactive);
 
-    connect(m_closeButton, SIGNAL(clicked()), this, SLOT(onCloseButtonClicked()));
-    connect(m_pinButton, SIGNAL(clicked()), this, SLOT(onPinButtonClicked()));
+    connect(m_closeButton, &DockingToolButton::clicked, this, &DockingPaneTabbedContainer::onCloseButtonClicked);
+    connect(m_pinButton, &DockingToolButton::clicked, this, &DockingPaneTabbedContainer::onPinButtonClicked);
 
     m_closeButton->setMaximumWidth(16);
     m_pinButton->setMaximumWidth(16);
@@ -110,7 +110,7 @@ DockingPaneTabbedContainer::DockingPaneTabbedContainer(QWidget *parent) :
 
     updateMargins();
 
-    connect(qApp, SIGNAL(focusChanged(QWidget*,QWidget*)), this, SLOT(onFocusChanged(QWidget *,QWidget*)));
+    connect(qApp, &QApplication::focusChanged, this, &DockingPaneTabbedContainer::onFocusChanged);
 
     m_stackedWidget->setFocusPolicy(Qt::StrongFocus);
 
@@ -714,11 +714,11 @@ DockingPaneFlyoutWidget *DockingPaneTabbedContainer::openFlyout(bool hasFocus, Q
 {
     m_flyoutWidget = new DockingPaneFlyoutWidget(hasFocus, parent->rect(), this, pane, (DockingPaneFlyoutWidget::FlyoutPosition) pos,  m_stackedWidget->widget(m_paneList.indexOf(pane)), parent);
 
-    connect(m_flyoutWidget, SIGNAL(unpinContainer()), this, SLOT(onUnpinContainer()));
-    connect(m_flyoutWidget, SIGNAL(closeContainer()), this, SLOT(onCloseContainer()));
-    connect(m_flyoutWidget, SIGNAL(startDragFlyoutTitle(QPoint)), this, SLOT(onStartDragFlyoutTitle(QPoint)));
-    connect(m_flyoutWidget, SIGNAL(endDragFlyoutTitle(QPoint)), this, SLOT(onEndDragFlyoutTitle(QPoint)));
-    connect(m_flyoutWidget, SIGNAL(moveDragFlyoutTitle(QPoint)), this, SLOT(onMoveDragFlyoutTitle(QPoint)));
+    connect(m_flyoutWidget, &DockingPaneFlyoutWidget::unpinContainer, this, &DockingPaneTabbedContainer::onUnpinContainer);
+    connect(m_flyoutWidget, &DockingPaneFlyoutWidget::closeContainer, this, &DockingPaneTabbedContainer::onCloseContainer);
+    connect(m_flyoutWidget, &DockingPaneFlyoutWidget::startDragFlyoutTitle, this, &DockingPaneTabbedContainer::onStartDragFlyoutTitle);
+    connect(m_flyoutWidget, &DockingPaneFlyoutWidget::endDragFlyoutTitle, this, &DockingPaneTabbedContainer::onEndDragFlyoutTitle);
+    connect(m_flyoutWidget, &DockingPaneFlyoutWidget::moveDragFlyoutTitle, this, &DockingPaneTabbedContainer::onMoveDragFlyoutTitle);
 
     m_flyoutWidget->show();
 
