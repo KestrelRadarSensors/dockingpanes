@@ -179,18 +179,14 @@ bool DockingPaneTabbedContainer::addPane(DockingPaneContainer *child)
     return(false);
 }
 
-void DockingPaneTabbedContainer::resizeEvent(QResizeEvent * event)
+void DockingPaneTabbedContainer::resizeEvent(QResizeEvent*)
 {
-    Q_UNUSED(event);
-
     updateMargins();
 }
 
-void DockingPaneTabbedContainer::paintEvent(QPaintEvent* event)
+void DockingPaneTabbedContainer::paintEvent(QPaintEvent*)
 {
     int i;
-
-    Q_UNUSED(event);
 
     QPainter p(this);
 
@@ -814,10 +810,8 @@ void DockingPaneTabbedContainer::onMoveDragFlyoutTitle(QPoint pos)
     }
 }
 
-void DockingPaneTabbedContainer::onFocusChanged(QWidget *old, QWidget *now)
+void DockingPaneTabbedContainer::onFocusChanged(QWidget*, QWidget *now)
 {
-    Q_UNUSED(old);
-
     this->setActivePane(this->isAncestorOf(now));
 
     if (now==m_stackedWidget) {
