@@ -17,10 +17,12 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "DockingPaneSplitterContainer.h"
-#include <QGridLayout>
 #include <QDomDocument>
 #include <QDebug>
+#include <QGridLayout>
+#include <QSplitter>
+
+#include "DockingPaneSplitterContainer.h"
 
 DockingPaneSplitterContainer::DockingPaneSplitterContainer(QWidget *parent, SplitterDirection direction) :
     DockingPaneBase(parent)
