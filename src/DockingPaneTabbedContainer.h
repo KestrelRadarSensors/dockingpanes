@@ -35,7 +35,7 @@ class DockingPaneTabbedContainer : public DockingPaneContainer
         Q_OBJECT
 
     public:
-        explicit DockingPaneTabbedContainer(QWidget *parent = 0);
+        explicit DockingPaneTabbedContainer(QWidget *parent = nullptr);
         ~DockingPaneTabbedContainer();
 
         bool addPane(DockingPaneContainer *child);

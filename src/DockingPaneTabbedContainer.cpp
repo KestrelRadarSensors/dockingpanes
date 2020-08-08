@@ -42,8 +42,8 @@ DockingPaneTabbedContainer::DockingPaneTabbedContainer(QWidget *parent) :
     QVBoxLayout *vLayout;
     QHBoxLayout *hLayout;
 
-    m_draggedPane = NULL;
-    m_floatingGlow = NULL;
+    m_draggedPane = nullptr;
+    m_floatingGlow = nullptr;
 
     vLayout = new QVBoxLayout();
 
@@ -425,7 +425,7 @@ void DockingPaneTabbedContainer::mouseReleaseEvent(QMouseEvent *e)
             dockingManager()->floatingPaneEndMove(m_draggedPane, this->mapToGlobal(e->pos()));
         }
 
-        m_draggedPane = NULL;
+        m_draggedPane = nullptr;
 
         releaseMouse();
 
@@ -440,7 +440,7 @@ void DockingPaneTabbedContainer::mouseReleaseEvent(QMouseEvent *e)
 
                 if (m_floatingGlow) {
                     delete m_floatingGlow;
-                    m_floatingGlow = NULL;
+                    m_floatingGlow = nullptr;
                 }
             } else {
                 dockingManager()->replacePane(this, m_paneList.at(0));
@@ -626,7 +626,7 @@ void DockingPaneTabbedContainer::onUnpinContainer(void)
 
     dockingManager()->unpinPane(this);
 
-    m_flyoutWidget = NULL;
+    m_flyoutWidget = nullptr;
 }
 
 void DockingPaneTabbedContainer::onCloseContainer(void)
@@ -667,7 +667,7 @@ void DockingPaneTabbedContainer::onCloseContainer(void)
 
     m_flyoutWidget->endDrag();
 
-    m_flyoutWidget = NULL;
+    m_flyoutWidget = nullptr;
 }
 
 
@@ -727,7 +727,7 @@ DockingPaneFlyoutWidget *DockingPaneTabbedContainer::openFlyout(bool hasFocus, Q
 
 void DockingPaneTabbedContainer::onStartDragFlyoutTitle(QPoint pos)
 {
-    m_draggedPane = NULL;
+    m_draggedPane = nullptr;
 
     dockingManager()->floatingPaneStartMove(m_flyoutWidget->pane(), pos);
 
@@ -752,11 +752,11 @@ void DockingPaneTabbedContainer::onEndDragFlyoutTitle(QPoint pos)
         dockingManager()->deletePane(this);
     }
 
-    m_draggedPane = NULL;
+    m_draggedPane = nullptr;
 
     m_flyoutWidget->endDrag();
 
-    m_flyoutWidget = NULL;
+    m_flyoutWidget = nullptr;
 }
 
 void DockingPaneTabbedContainer::onMoveDragFlyoutTitle(QPoint pos)
@@ -893,7 +893,7 @@ void DockingPaneTabbedContainer::onCloseButtonClicked(void)
 
             if (m_floatingGlow) {
                 delete m_floatingGlow;
-                m_floatingGlow = NULL;
+                m_floatingGlow = nullptr;
             }
         } else {
             dockingManager()->replacePane(this, m_paneList.at(0));
