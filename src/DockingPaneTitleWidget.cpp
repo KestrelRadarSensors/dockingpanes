@@ -26,15 +26,10 @@
 #include "DockingPaneTitleWidget.h"
 
 DockingPaneTitleWidget::DockingPaneTitleWidget(QString text, QWidget *parent) :
-    QWidget(parent)
+    QWidget(parent), m_text(text), m_active(false)
 {
-    m_text = text;
-    m_active = false;
-
     this->setFont(QFont("Segoe UI", 9));
-
     this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-
     connect(qApp, &QApplication::focusChanged, this, &DockingPaneTitleWidget::onFocusChanged);
 }
 
