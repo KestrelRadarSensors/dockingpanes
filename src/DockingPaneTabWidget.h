@@ -21,25 +21,20 @@
 #define DOCKINGPANETABWIDGET_H
 
 #include <QWidget>
-#include <QStackedWidget>
+
+class QStackedWidget;
 
 class DockingPaneContainer;
 
 class DockingPaneTabWidget : public QWidget
 {
     Q_OBJECT
-
     public:
-        explicit DockingPaneTabWidget(QWidget *parent = 0);
-        
+        explicit DockingPaneTabWidget(QWidget *parent = nullptr);
         void addPane(DockingPaneContainer *pane);
 
-    signals:
-        
-    public slots:
-
     private:
-        QStackedWidget *m_stackedWidget;       
+        QStackedWidget *m_stackedWidget;
 };
 
 #endif // DOCKINGPANETABWIDGET_H
