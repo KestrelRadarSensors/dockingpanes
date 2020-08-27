@@ -18,7 +18,6 @@
  */
 
 #include "DockingTargetWidget.h"
-#include "DockingPaneTitleWidget.h"
 
 DockingTargetWidget::DockingTargetWidget(QWidget *parent) :
     QWidget(parent)

@@ -25,13 +25,8 @@
 class DockingTargetWidget : public QWidget
 {
     Q_OBJECT
-
     public:
-        explicit DockingTargetWidget(QWidget *parent = 0);
-        
-    signals:
-        
-    public slots:
+        explicit DockingTargetWidget(QWidget* parent = nullptr);
 };
 
 #endif // DOCKINGTARGETWIDGET_H
