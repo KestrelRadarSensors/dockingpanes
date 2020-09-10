@@ -40,7 +40,7 @@ INCLUDEPATH += \
         $$PWD/../../src
 
 CONFIG(debug, debug|release) {
-    LIBS += -L$$OUT_PWD/../../src/debug/ -lDockingPanesd
+    LIBS += -L$$OUT_PWD/../../src/ -lDockingPanes
 } else {
-    LIBS += -L$$OUT_PWD/../../src/release/ -lDockingPanes
+    LIBS += -L$$OUT_PWD/../../src/ -lDockingPanes
 }
