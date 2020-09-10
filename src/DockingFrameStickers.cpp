@@ -29,11 +29,8 @@ DockingFrameStickers::DockingFrameStickers(QWidget *parent) :
     m_isActive(false),
     m_tabVisible(false)
 {
-    setWindowFlags(Qt::Tool | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
-
-    setAttribute(Qt::WA_NoSystemBackground, true);
+    setWindowFlags(Qt::ToolTip | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
     setAttribute(Qt::WA_TranslucentBackground, true);
-    setAttribute(Qt::WA_PaintOnScreen);
 
     setBaseSize(41+24+24, 41+24+24);
     setMaximumSize(41+24+24, 41+24+24);
@@ -67,17 +64,17 @@ DockingFrameStickers::DockingFrameStickers(QWidget *parent) :
 
 void DockingFrameStickers::paintEvent(QPaintEvent*)
 {
-    QPainter p(this);
+     QPainter p(this);
 
-    p.drawImage(m_rcCentre, m_isActive ? m_activeStickers.value(Centre) : m_inactiveStickers.value(Centre));
-    p.drawImage(m_rcLeft, m_isActive ? m_activeStickers.value(Left) : m_inactiveStickers.value(Left));
-    p.drawImage(m_rcRight, m_isActive ? m_activeStickers.value(Right) : m_inactiveStickers.value(Right));
-    p.drawImage(m_rcTop, m_isActive ? m_activeStickers.value(Top) : m_inactiveStickers.value(Top));
-    p.drawImage(m_rcBottom, m_isActive ? m_activeStickers.value(Bottom) : m_inactiveStickers.value(Bottom));
+     p.drawImage(m_rcCentre, m_isActive ? m_activeStickers.value(Centre) : m_inactiveStickers.value(Centre));
+     p.drawImage(m_rcLeft, m_isActive ? m_activeStickers.value(Left) : m_inactiveStickers.value(Left));
+     p.drawImage(m_rcRight, m_isActive ? m_activeStickers.value(Right) : m_inactiveStickers.value(Right));
+     p.drawImage(m_rcTop, m_isActive ? m_activeStickers.value(Top) : m_inactiveStickers.value(Top));
+     p.drawImage(m_rcBottom, m_isActive ? m_activeStickers.value(Bottom) : m_inactiveStickers.value(Bottom));
 
-    if (m_tabVisible) {
-        p.drawImage(m_rcTab, m_isActive ? m_activeStickers.value(Tab) : m_inactiveStickers.value(Tab));
-    }
+     if (m_tabVisible) {
+         p.drawImage(m_rcTab, m_isActive ? m_activeStickers.value(Tab) : m_inactiveStickers.value(Tab));
+     }
 }
 
 void DockingFrameStickers::setTabVisible(bool state)
