@@ -29,11 +29,8 @@ DockingFrameFrameSticker::DockingFrameFrameSticker(QString image, QWidget *paren
     m_inactiveImage(QImage(QString(":/dockingBitmaps/%1_inactive.png").arg(image))),
     m_isActive(false)
 {
-    setWindowFlags(Qt::Tool | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
-
-    setAttribute(Qt::WA_NoSystemBackground, true);
+    setWindowFlags(Qt::ToolTip | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
     setAttribute(Qt::WA_TranslucentBackground, true);
-    setAttribute(Qt::WA_PaintOnScreen);
 
     this->setBaseSize(m_activeImage.size());
     this->setMaximumSize(m_activeImage.size());
