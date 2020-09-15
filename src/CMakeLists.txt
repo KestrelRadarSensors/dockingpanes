@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.15)
 
-project(dockingpanes)
+project(dockingpanes VERSION 1.0.0 DESCRIPTION "Docking windows library for Qt")
+
+include(GNUInstallDirs)
+
+option(BUILD_SHARED_LIBS "Build shared library" ON)
 
 # Required dependencies
 find_package(
@@ -17,7 +21,15 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
-add_library(dockingpanes STATIC)
+# Declare library target
+add_library(dockingpanes)
+
+set_target_properties(dockingpanes
+    PROPERTIES
+        VERSION ${PROJECT_VERSION}
+        SOVERSION 1
+        PUBLIC_HEADER DockingPaneManager.h
+)
 
 set_target_properties(dockingpanes
     PROPERTIES
@@ -76,33 +88,7 @@ target_link_libraries(
         Qt5::Xml
 )
 
-# install(TARGETS dockingpanes DESTINATION lib)
-# install(FILES ???)
-
-# cmake_minimum_required(VERSION 3.13)
-# include(GNUInstallDirs)
-# project(libfoo
-#     VERSION 0.1.0
-#     LANGUAGES CXX
-# )
-# add_library(foo SHARED
-#     source/foo.cpp
-# )
-# target_include_directories(foo PUBLIC
-#     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-#     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/foo>
-# )
-# target_compile_features(foo PRIVATE cxx_std_17)
-# target_compile_options (foo PRIVATE -Wall -Wextra)
-# set_target_properties  (foo
-#     PROPERTIES
-#         PUBLIC_HEADER "include/foo.h")
-# install(TARGETS foo EXPORT fooTargets
-#     LIBRARY       DESTINATION ${CMAKE_INSTALL_LIBDIR}
-#     PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/foo
-# )
-# install(EXPORT fooTargets
-#     FILE fooTargets.cmake
-#     NAMESPACE foo::
-#     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/foo
-# )
+install(TARGETS dockingpanes
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/dockingpanes
+)
