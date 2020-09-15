@@ -1,29 +1,29 @@
 <RCC>
-    <qresource prefix="/tool_button_bitmaps">
+    <qresource prefix="tool_button_bitmaps">
         <file>img/tool_button_bitmaps/close_active.png</file>
         <file>img/tool_button_bitmaps/close_inactive.png</file>
         <file>img/tool_button_bitmaps/pin_active.png</file>
         <file>img/tool_button_bitmaps/pin_inactive.png</file>
     </qresource>
-    <qresource prefix="/docking_bitmaps">
-        <file>img/dockingBitmaps/centre_active.png</file>
-        <file>img/dockingBitmaps/centre_inactive.png</file>
-        <file>img/dockingBitmaps/frame_bottom_active.png</file>
-        <file>img/dockingBitmaps/frame_bottom_inactive.png</file>
-        <file>img/dockingBitmaps/frame_left_active.png</file>
-        <file>img/dockingBitmaps/frame_left_inactive.png</file>
-        <file>img/dockingBitmaps/frame_right_active.png</file>
-        <file>img/dockingBitmaps/frame_right_inactive.png</file>
-        <file>img/dockingBitmaps/frame_top_active.png</file>
-        <file>img/dockingBitmaps/frame_top_inactive.png</file>
-        <file>img/dockingBitmaps/tab.png</file>
-        <file>img/dockingBitmaps/window_bottom_active.png</file>
-        <file>img/dockingBitmaps/window_bottom_inactive.png</file>
-        <file>img/dockingBitmaps/window_left_active.png</file>
-        <file>img/dockingBitmaps/window_left_inactive.png</file>
-        <file>img/dockingBitmaps/window_right_active.png</file>
-        <file>img/dockingBitmaps/window_right_inactive.png</file>
-        <file>img/dockingBitmaps/window_top_active.png</file>
-        <file>img/dockingBitmaps/window_top_inactive.png</file>
+    <qresource prefix="docking_bitmaps">
+        <file>img/docking_bitmaps/centre_active.png</file>
+        <file>img/docking_bitmaps/centre_inactive.png</file>
+        <file>img/docking_bitmaps/frame_bottom_active.png</file>
+        <file>img/docking_bitmaps/frame_bottom_inactive.png</file>
+        <file>img/docking_bitmaps/frame_left_active.png</file>
+        <file>img/docking_bitmaps/frame_left_inactive.png</file>
+        <file>img/docking_bitmaps/frame_right_active.png</file>
+        <file>img/docking_bitmaps/frame_right_inactive.png</file>
+        <file>img/docking_bitmaps/frame_top_active.png</file>
+        <file>img/docking_bitmaps/frame_top_inactive.png</file>
+        <file>img/docking_bitmaps/tab.png</file>
+        <file>img/docking_bitmaps/window_bottom_active.png</file>
+        <file>img/docking_bitmaps/window_bottom_inactive.png</file>
+        <file>img/docking_bitmaps/window_left_active.png</file>
+        <file>img/docking_bitmaps/window_left_inactive.png</file>
+        <file>img/docking_bitmaps/window_right_active.png</file>
+        <file>img/docking_bitmaps/window_right_inactive.png</file>
+        <file>img/docking_bitmaps/window_top_active.png</file>
+        <file>img/docking_bitmaps/window_top_inactive.png</file>
     </qresource>
 </RCC>
