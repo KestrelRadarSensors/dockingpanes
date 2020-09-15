@@ -76,5 +76,5 @@ HEADERS += \
     DockingPaneGlow.h
 
 RESOURCES += \
-    images.qrc
+    resources/images.qrc
 
