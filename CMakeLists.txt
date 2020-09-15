@@ -5,7 +5,7 @@ project(dockingpanes VERSION 1.0.0 DESCRIPTION "Docking windows library for Qt")
 include(GNUInstallDirs)
 
 option(BUILD_SHARED_LIBS "Build shared library" ON)
-option(BUILD_EXAMPLES "Build examples" OFF)
+option(BUILD_EXAMPLES "Build examples" ON)
 
 # Required dependencies
 find_package(
@@ -39,6 +39,8 @@ set_target_properties(dockingpanes
         CXX_EXTENSIONS NO
 )
 
+target_compile_definitions(dockingpanes PUBLIC DOCKINGPANES_LIBRARY)
+
 add_subdirectory(src)
 if(BUILD_EXAMPLES)
     add_subdirectory(examples)
@@ -51,6 +53,10 @@ target_link_libraries(
         Qt5::Gui
         Qt5::Widgets
         Qt5::Xml
+)
+
+target_include_directories(
+    dockingpanes PUBLIC src/
 )
 
 install(TARGETS dockingpanes
