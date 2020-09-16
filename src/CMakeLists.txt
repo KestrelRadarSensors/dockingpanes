@@ -1,23 +1,4 @@
-target_sources(
-    dockingpanes
-    PUBLIC
-        DockAutoHideButton.h
-        DockingFrameFrameSticker.h
-        DockingFrameStickers.h
-        DockingPaneBase.h
-        DockingPaneClient.h
-        DockingPaneContainer.h
-        DockingPaneFlyoutWidget.h
-        DockingPaneGlow.h
-        DockingPaneGlowWidget.h
-        DockingPaneManager.h
-        DockingPanes_global.h
-        DockingPaneSplitterContainer.h
-        DockingPaneTabbedContainer.h
-        DockingPaneTabWidget.h
-        DockingPaneTitleWidget.h
-        DockingTargetWidget.h
-        DockingToolButton.h
+target_sources(dockingpanes
     PRIVATE
         DockAutoHideButton.cpp
         DockingFrameFrameSticker.cpp
