@@ -40,7 +40,7 @@ class DockingPaneManagerPrivate
         DockingPaneManagerPrivate(DockingPaneManager *parent) :
             q_ptr(parent)
         {
-
+            Q_INIT_RESOURCE(images);
         }
 
     private:
