@@ -1,3 +1,5 @@
+set(CMAKE_INSTALL_RPATH $ORIGIN $ORIGIN/../lib)
+
 add_executable(simple
     mainwindow.ui
     mainwindow.cpp
@@ -11,15 +13,9 @@ set_target_properties(simple
         CXX_EXTENSIONS NO
 )
 
-target_link_libraries(
-    simple
+target_link_libraries(simple
     PUBLIC
-        Qt5::Core
-        Qt5::Gui
-        Qt5::Widgets
         dockingpanes
 )
 
-install(TARGETS simple
-    DESTINATION ${CMAKE_INSTALL_BINDIR}
-)
+install(TARGETS simple)

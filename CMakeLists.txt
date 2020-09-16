@@ -2,8 +2,6 @@ cmake_minimum_required(VERSION 3.15)
 
 project(dockingpanes VERSION 1.0.0 DESCRIPTION "Docking windows library for Qt")
 
-include(GNUInstallDirs)
-
 option(BUILD_SHARED_LIBS "Build shared library" ON)
 option(BUILD_EXAMPLES "Build examples" ON)
 
@@ -60,6 +58,5 @@ target_include_directories(
 )
 
 install(TARGETS dockingpanes
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/dockingpanes
+    PUBLIC_HEADER DESTINATION include/dockingpanes
 )
