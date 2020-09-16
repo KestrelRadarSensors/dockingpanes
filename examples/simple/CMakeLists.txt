@@ -1,3 +1,5 @@
+set(CMAKE_INSTALL_RPATH $ORIGIN $ORIGIN/../lib)
+
 add_executable(simple
     mainwindow.ui
     mainwindow.cpp
