@@ -11,12 +11,8 @@ set_target_properties(simple
         CXX_EXTENSIONS NO
 )
 
-target_link_libraries(
-    simple
+target_link_libraries(simple
     PUBLIC
-        Qt5::Core
-        Qt5::Gui
-        Qt5::Widgets
         dockingpanes
 )
 
