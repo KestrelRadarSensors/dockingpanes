@@ -20,6 +20,4 @@ target_link_libraries(
         dockingpanes
 )
 
-install(TARGETS simple
-    DESTINATION ${CMAKE_INSTALL_BINDIR}
-)
+install(TARGETS simple)
