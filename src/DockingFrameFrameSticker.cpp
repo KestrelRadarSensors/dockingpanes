@@ -25,8 +25,8 @@
 
 DockingFrameFrameSticker::DockingFrameFrameSticker(QString image, QWidget *parent) :
     QWidget(parent),
-    m_activeImage(QImage(QString(":/dockingBitmaps/%1_active.png").arg(image))),
-    m_inactiveImage(QImage(QString(":/dockingBitmaps/%1_inactive.png").arg(image))),
+    m_activeImage(QImage(QString(":/img/docking_bitmaps/%1_active.png").arg(image))),
+    m_inactiveImage(QImage(QString(":/img/docking_bitmaps/%1_inactive.png").arg(image))),
     m_isActive(false)
 {
     setWindowFlags(Qt::ToolTip | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);

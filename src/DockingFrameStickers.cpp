@@ -163,19 +163,19 @@ void DockingFrameStickers::showEvent(QShowEvent*)
 
 void DockingFrameStickers::initializeStickersImages()
 {
-    m_activeStickers.insert(Centre, QImage(":/dockingBitmaps/centre_active.png"));
-    m_activeStickers.insert(Left, QImage(":/dockingBitmaps/window_left_active.png"));
-    m_activeStickers.insert(Right, QImage(":/dockingBitmaps/window_right_active.png"));
-    m_activeStickers.insert(Top, QImage(":/dockingBitmaps/window_top_active.png"));
-    m_activeStickers.insert(Bottom, QImage(":/dockingBitmaps/window_bottom_active.png"));
-    m_activeStickers.insert(Tab, QImage(":/dockingBitmaps/tab.png"));
+    m_activeStickers.insert(Centre, QImage(":/img/docking_bitmaps/centre_active.png"));
+    m_activeStickers.insert(Left, QImage(":/img/docking_bitmaps/window_left_active.png"));
+    m_activeStickers.insert(Right, QImage(":/img/docking_bitmaps/window_right_active.png"));
+    m_activeStickers.insert(Top, QImage(":/img/docking_bitmaps/window_top_active.png"));
+    m_activeStickers.insert(Bottom, QImage(":/img/docking_bitmaps/window_bottom_active.png"));
+    m_activeStickers.insert(Tab, QImage(":/img/docking_bitmaps/tab.png"));
 
-    m_inactiveStickers.insert(Centre, QImage(":/dockingBitmaps/centre_inactive.png"));
-    m_inactiveStickers.insert(Left, QImage(":/dockingBitmaps/window_left_inactive.png"));
-    m_inactiveStickers.insert(Right, QImage(":/dockingBitmaps/window_right_inactive.png"));
-    m_inactiveStickers.insert(Top, QImage(":/dockingBitmaps/window_top_inactive.png"));
-    m_inactiveStickers.insert(Bottom, QImage(":/dockingBitmaps/window_bottom_inactive.png"));
-    m_inactiveStickers.insert(Tab, QImage(":/dockingBitmaps/tab.png"));
+    m_inactiveStickers.insert(Centre, QImage(":/img/docking_bitmaps/centre_inactive.png"));
+    m_inactiveStickers.insert(Left, QImage(":/img/docking_bitmaps/window_left_inactive.png"));
+    m_inactiveStickers.insert(Right, QImage(":/img/docking_bitmaps/window_right_inactive.png"));
+    m_inactiveStickers.insert(Top, QImage(":/img/docking_bitmaps/window_top_inactive.png"));
+    m_inactiveStickers.insert(Bottom, QImage(":/img/docking_bitmaps/window_bottom_inactive.png"));
+    m_inactiveStickers.insert(Tab, QImage(":/img/docking_bitmaps/tab.png"));
 }
 
 void DockingFrameStickers::setFrameRect(QRect rect)
