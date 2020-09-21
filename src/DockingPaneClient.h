@@ -21,28 +21,24 @@
 #define DOCKINGPANECLIENT_H
 
 #include "DockingPaneBase.h"
-#include <QGridLayout>
+
+class QGridLayout;
 
 class DockingPaneManager;
 
 class DockingPaneClient : public DockingPaneBase
 {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
-        DockingPaneClient(QWidget *parent=NULL);
+        DockingPaneClient(QWidget *parent = nullptr);
 
         friend class DockingPaneManager;
 
-
-        virtual void saveLayout(QDomNode *parentNode, bool includeGeometry=false);
+        virtual void saveLayout(QDomNode *parentNode, bool includeGeometry=false) override;
 
     private:
         void setWidget(QWidget *widget);
-
-    private:
-        QWidget *m_widget;
-        QGridLayout *m_layout;
 };
 
 #endif // DOCKINGPANECLIENT_H
