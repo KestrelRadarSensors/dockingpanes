@@ -17,8 +17,10 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "DockingPaneClient.h"
 #include <QDomDocument>
+#include <QGridLayout>
+
+#include "DockingPaneClient.h"
 
 DockingPaneClient::DockingPaneClient(QWidget *parent) :
     DockingPaneBase(parent)
@@ -29,22 +31,15 @@ DockingPaneClient::DockingPaneClient(QWidget *parent) :
 void DockingPaneClient::setWidget(QWidget *widget)
 {
     delete this->layout();
-
     this->setLayout(new QGridLayout());
-
     this->layout()->setMargin(0);
     this->layout()->setSpacing(0);
-
     this->layout()->addWidget(widget);
 }
 
-void DockingPaneClient::saveLayout(QDomNode *parentNode, bool includeGeometry)
+void DockingPaneClient::saveLayout(QDomNode *parentNode, bool)
 {
-    Q_UNUSED(includeGeometry);
-
     QDomDocument doc = parentNode->ownerDocument();
-
     QDomElement domElement = doc.createElement(this->metaObject()->className());
-
     parentNode->appendChild(domElement);
 }
