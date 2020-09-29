@@ -125,7 +125,9 @@ DockingPaneFlyoutWidget::DockingPaneFlyoutWidget(bool hasFocus, DockingPaneConta
         }
     }
 
-    connect(qApp, &QApplication::focusChanged, this, &DockingPaneFlyoutWidget::onFocusChanged);
+    // @todo Investigate why this syntax makes the program crash when closing the pane
+    // connect(qApp, &QApplication::focusChanged, this, &DockingPaneFlyoutWidget::onFocusChanged);
+    connect(qApp, SIGNAL(focusChanged(QWidget*, QWidget*)), this, SLOT(onFocusChanged(QWidget*, QWidget*)));
 
     if (hasFocus) {
         m_clientWidget->setFocus();

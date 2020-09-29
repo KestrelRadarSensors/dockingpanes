@@ -73,11 +73,13 @@ class DockingPaneFlyoutWidget : public QWidget
         virtual void enterEvent(QEvent* event) override;
         virtual void leaveEvent(QEvent* event) override;
 
+    private Q_SLOTS:
+        void onFocusChanged(QWidget *old,QWidget *now);
+
     private:
         void setActivePane(bool active);
         void setPositionAndSize(void);
         void updateCursor(void);
-        void onFocusChanged(QWidget *old,QWidget *now);
         void autoHideTimeout(void);
 
         DockingPaneContainer *m_pane;
