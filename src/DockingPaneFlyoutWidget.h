@@ -42,7 +42,7 @@ class DockingPaneFlyoutWidget : public QWidget
         };
 
         explicit DockingPaneFlyoutWidget(bool hasFocus, DockingPaneContainer *container, DockingPaneContainer *pane, FlyoutPosition pos, QWidget *widget, QWidget *parent = nullptr);
-        ~DockingPaneFlyoutWidget();
+        virtual ~DockingPaneFlyoutWidget() = default;
 
         void restorePaneWidget();
         DockingPaneContainer *pane(void);

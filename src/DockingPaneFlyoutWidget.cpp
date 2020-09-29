@@ -147,10 +147,6 @@ void DockingPaneFlyoutWidget::resizeEvent(QResizeEvent*)
     m_headerWidget->setMaximumHeight(6+m_headerWidget->fontMetrics().height());
 }
 
-DockingPaneFlyoutWidget::~DockingPaneFlyoutWidget()
-{
-}
-
 void DockingPaneFlyoutWidget::enterEvent(QEvent*)
 {
     updateCursor();
