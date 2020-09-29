@@ -125,7 +125,9 @@ DockingPaneFlyoutWidget::DockingPaneFlyoutWidget(bool hasFocus, DockingPaneConta
         }
     }
 
-    connect(qApp, &QApplication::focusChanged, this, &DockingPaneFlyoutWidget::onFocusChanged);
+    // @todo Investigate why this syntax makes the program crash when closing the pane
+    // connect(qApp, &QApplication::focusChanged, this, &DockingPaneFlyoutWidget::onFocusChanged);
+    connect(qApp, SIGNAL(focusChanged(QWidget*, QWidget*)), this, SLOT(onFocusChanged(QWidget*, QWidget*)));
 
     if (hasFocus) {
         m_clientWidget->setFocus();
@@ -143,10 +145,6 @@ void DockingPaneFlyoutWidget::resizeEvent(QResizeEvent*)
 {
     m_headerWidget->setMinimumHeight(6+m_headerWidget->fontMetrics().height());
     m_headerWidget->setMaximumHeight(6+m_headerWidget->fontMetrics().height());
-}
-
-DockingPaneFlyoutWidget::~DockingPaneFlyoutWidget()
-{
 }
 
 void DockingPaneFlyoutWidget::enterEvent(QEvent*)
