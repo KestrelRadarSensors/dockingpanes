@@ -33,6 +33,7 @@
 #include <math.h>
 #include <QApplication>
 #include <QUuid>
+#include "DockingPaneGlow.h"
 
 DockingPaneTabbedContainer::DockingPaneTabbedContainer(QWidget *parent) :
     DockingPaneContainer(parent)
