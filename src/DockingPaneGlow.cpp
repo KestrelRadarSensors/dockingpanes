@@ -17,34 +17,28 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "DockingPaneGlow.h"
 #include <QDebug>
 
-DockingPaneGlow::DockingPaneGlow(QWidget *floatingPane, QObject *parent) :
+#include "DockingPaneGlow.h"
+#include "DockingPaneGlowWidget.h"
+
+DockingPaneGlow::DockingPaneGlow(QWidget* floatingPane, QObject* parent) :
     QObject(parent)
 {
-    m_leftGlow = new DockingPaneGlowWidget(floatingPane, DockingPaneGlowWidget::Left, qobject_cast<QWidget *>(parent));
-
-    connect(m_leftGlow, SIGNAL(glowResized()), this, SLOT(onGlowResized()));
-
+    m_leftGlow = new DockingPaneGlowWidget(floatingPane, DockingPaneGlowWidget::Left, qobject_cast<QWidget*>(parent));
+    connect(m_leftGlow, &DockingPaneGlowWidget::glowResized, this, &DockingPaneGlow::onGlowResized);
     m_leftGlow->show();
 
-    m_rightGlow = new DockingPaneGlowWidget(floatingPane, DockingPaneGlowWidget::Right,  qobject_cast<QWidget *>(parent));
-
-    connect(m_rightGlow, SIGNAL(glowResized()), this, SLOT(onGlowResized()));
-
+    m_rightGlow = new DockingPaneGlowWidget(floatingPane, DockingPaneGlowWidget::Right,  qobject_cast<QWidget*>(parent));
+    connect(m_rightGlow, &DockingPaneGlowWidget::glowResized, this, &DockingPaneGlow::onGlowResized);
     m_rightGlow->show();
 
-    m_topGlow = new DockingPaneGlowWidget(floatingPane, DockingPaneGlowWidget::Top,  qobject_cast<QWidget *>(parent));
-
-    connect(m_topGlow, SIGNAL(glowResized()), this, SLOT(onGlowResized()));
-
+    m_topGlow = new DockingPaneGlowWidget(floatingPane, DockingPaneGlowWidget::Top,  qobject_cast<QWidget*>(parent));
+    connect(m_topGlow, &DockingPaneGlowWidget::glowResized, this, &DockingPaneGlow::onGlowResized);
     m_topGlow->show();
 
-    m_bottomGlow = new DockingPaneGlowWidget(floatingPane, DockingPaneGlowWidget::Bottom,  qobject_cast<QWidget *>(parent));
-
-    connect(m_bottomGlow, SIGNAL(glowResized()), this, SLOT(onGlowResized()));
-
+    m_bottomGlow = new DockingPaneGlowWidget(floatingPane, DockingPaneGlowWidget::Bottom,  qobject_cast<QWidget*>(parent));
+    connect(m_bottomGlow, &DockingPaneGlowWidget::glowResized, this, &DockingPaneGlow::onGlowResized);
     m_bottomGlow->show();
 }
 
