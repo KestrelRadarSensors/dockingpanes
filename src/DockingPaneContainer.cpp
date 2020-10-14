@@ -289,7 +289,7 @@ void DockingPaneContainer::onCloseContainer(void)
 
 DockingPaneFlyoutWidget *DockingPaneContainer::openFlyout(bool hasFocus, QWidget *parent, FlyoutPosition pos, DockingPaneContainer *pane)
 {
-    m_flyoutWidget = new DockingPaneFlyoutWidget(hasFocus, parent->rect(), pane, pane, (DockingPaneFlyoutWidget::FlyoutPosition) pos, m_clientWidget, parent);
+    m_flyoutWidget = new DockingPaneFlyoutWidget(hasFocus, pane, pane, (DockingPaneFlyoutWidget::FlyoutPosition) pos, m_clientWidget, parent);
 
     connect(m_flyoutWidget, &DockingPaneFlyoutWidget::unpinContainer, this, &DockingPaneContainer::onUnpinContainer);
     connect(m_flyoutWidget, &DockingPaneFlyoutWidget::closeContainer, this, &DockingPaneContainer::onCloseContainer);
