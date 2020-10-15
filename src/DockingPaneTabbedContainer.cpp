@@ -33,6 +33,7 @@
 #include <math.h>
 #include <QApplication>
 #include <QUuid>
+#include "DockingPaneGlow.h"
 
 DockingPaneTabbedContainer::DockingPaneTabbedContainer(QWidget *parent) :
     DockingPaneContainer(parent)
@@ -710,7 +711,7 @@ void DockingPaneTabbedContainer::onMoveDragTitle(QPoint pos)
 
 DockingPaneFlyoutWidget *DockingPaneTabbedContainer::openFlyout(bool hasFocus, QWidget *parent, FlyoutPosition pos, DockingPaneContainer *pane)
 {
-    m_flyoutWidget = new DockingPaneFlyoutWidget(hasFocus, parent->rect(), this, pane, (DockingPaneFlyoutWidget::FlyoutPosition) pos,  m_stackedWidget->widget(m_paneList.indexOf(pane)), parent);
+    m_flyoutWidget = new DockingPaneFlyoutWidget(hasFocus, this, pane, (DockingPaneFlyoutWidget::FlyoutPosition) pos,  m_stackedWidget->widget(m_paneList.indexOf(pane)), parent);
 
     connect(m_flyoutWidget, SIGNAL(unpinContainer()), this, SLOT(onUnpinContainer()));
     connect(m_flyoutWidget, SIGNAL(closeContainer()), this, SLOT(onCloseContainer()));
