@@ -42,7 +42,7 @@ class DockingPaneFlyoutWidget : public QWidget
         };
 
         explicit DockingPaneFlyoutWidget(bool hasFocus, DockingPaneContainer *container, DockingPaneContainer *pane, FlyoutPosition pos, QWidget *widget, QWidget *parent = nullptr);
-        ~DockingPaneFlyoutWidget();
+        virtual ~DockingPaneFlyoutWidget() = default;
 
         void restorePaneWidget();
         DockingPaneContainer *pane(void);
@@ -73,11 +73,13 @@ class DockingPaneFlyoutWidget : public QWidget
         virtual void enterEvent(QEvent* event) override;
         virtual void leaveEvent(QEvent* event) override;
 
+    private Q_SLOTS:
+        void onFocusChanged(QWidget *old,QWidget *now);
+
     private:
         void setActivePane(bool active);
         void setPositionAndSize(void);
         void updateCursor(void);
-        void onFocusChanged(QWidget *old,QWidget *now);
         void autoHideTimeout(void);
 
         DockingPaneContainer *m_pane;
