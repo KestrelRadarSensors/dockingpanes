@@ -60,33 +60,33 @@ void DockingToolButton::paintEvent(QPaintEvent*)
 
     switch(m_buttonType) {
         case closeButtonInactive: {
-             buttonImage.load(":/close_inactive.png");
+             buttonImage.load(":/img/tool_button_bitmaps/close_inactive.png");
              break;
         }
 
         case closeButtonActive: {
-             buttonImage.load(":/close_active.png");
+             buttonImage.load(":/img/tool_button_bitmaps/close_active.png");
              break;
         }
 
         case pinButtonInactive: {
-             buttonImage.load(":/pin_inactive.png");
+             buttonImage.load(":/img/tool_button_bitmaps/pin_inactive.png");
              break;
         }
 
         case pinButtonActive: {
-             buttonImage.load(":/pin_active.png");
+             buttonImage.load(":/img/tool_button_bitmaps/pin_active.png");
              break;
         }
 
         case unpinButtonInactive: {
-             buttonImage.load(":/pin_inactive.png");
+             buttonImage.load(":/img/tool_button_bitmaps/pin_inactive.png");
              buttonImage = buttonImage.transformed(QTransform().rotate(90));
              break;
         }
 
         case unpinButtonActive: {
-             buttonImage.load(":/pin_active.png");
+             buttonImage.load(":/img/tool_button_bitmaps/pin_active.png");
              buttonImage = buttonImage.transformed(QTransform().rotate(90));
              break;
         }

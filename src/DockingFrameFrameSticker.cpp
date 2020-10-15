@@ -17,34 +17,28 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "DockingFrameFrameSticker.h"
+#include <QDebug>
 #include <QPaintEvent>
 #include <QPainter>
-#include <QDebug>
+
+#include "DockingFrameFrameSticker.h"
 
 DockingFrameFrameSticker::DockingFrameFrameSticker(QString image, QWidget *parent) :
-    QWidget(parent)
+    QWidget(parent),
+    m_activeImage(QImage(QString(":/img/docking_bitmaps/%1_active.png").arg(image))),
+    m_inactiveImage(QImage(QString(":/img/docking_bitmaps/%1_inactive.png").arg(image))),
+    m_isActive(false)
 {
-    setWindowFlags(Qt::Tool | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint );
-
-    setAttribute(Qt::WA_NoSystemBackground, true);
+    setWindowFlags(Qt::ToolTip | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
     setAttribute(Qt::WA_TranslucentBackground, true);
-    setAttribute(Qt::WA_PaintOnScreen);
-
-    m_activeImage = QImage(QString(":/dockingBitmaps/%1_active.png").arg(image));
-    m_inactiveImage = QImage(QString(":/dockingBitmaps/%1_inactive.png").arg(image));
 
     this->setBaseSize(m_activeImage.size());
     this->setMaximumSize(m_activeImage.size());
     this->setMaximumSize(m_activeImage.size());
-
-    m_isActive = false;
 }
 
-void DockingFrameFrameSticker::paintEvent(QPaintEvent* event)
+void DockingFrameFrameSticker::paintEvent(QPaintEvent*)
 {
-    Q_UNUSED(event);
-
     QPainter p(this);
 
     if (m_isActive) {

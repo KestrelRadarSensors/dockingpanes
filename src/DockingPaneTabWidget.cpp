@@ -17,23 +17,20 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "DockingPaneTabWidget.h"
-#include "DockingPaneContainer.h"
 #include <QGridLayout>
+#include <QStackedWidget>
+
+#include "DockingPaneContainer.h"
+#include "DockingPaneTabWidget.h"
 
 DockingPaneTabWidget::DockingPaneTabWidget(QWidget *parent) :
-    QWidget(parent)
+    QWidget(parent), m_stackedWidget(new QStackedWidget())
 {
-    m_stackedWidget = new QStackedWidget();
-
-    QGridLayout *layout = new QGridLayout;
-
+    QGridLayout *layout = new QGridLayout();
     layout->addWidget(m_stackedWidget);
-
     layout->setSpacing(0);
     layout->setMargin(0);
-
-    setLayout(layout);
+    this->setLayout(layout);
 }
 
 void DockingPaneTabWidget::addPane(DockingPaneContainer *pane)
