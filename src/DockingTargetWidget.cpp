@@ -18,12 +18,11 @@
  */
 
 #include "DockingTargetWidget.h"
-#include "DockingPaneTitleWidget.h"
 
 DockingTargetWidget::DockingTargetWidget(QWidget *parent) :
     QWidget(parent)
 {
-    setWindowFlags(Qt::Tool | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint );
+    setWindowFlags(Qt::ToolTip | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::NoDropShadowWindowHint );
     setWindowOpacity(0.5);
 
     this->setStyleSheet("background-color:#6dbaf9");

@@ -17,39 +17,30 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "DockingPaneTitleWidget.h"
-#include <QPainter>
-#include <QFont>
-#include <QDebug>
-#include <QMouseEvent>
-#include <math.h>
 #include <QApplication>
+#include <QDebug>
+#include <QFont>
+#include <QMouseEvent>
+#include <QPainter>
+
+#include "DockingPaneTitleWidget.h"
 
 DockingPaneTitleWidget::DockingPaneTitleWidget(QString text, QWidget *parent) :
-    QWidget(parent)
+    QWidget(parent), m_text(text), m_active(false)
 {
-    m_text = text;
-    m_active = false;
-
     this->setFont(QFont("Segoe UI", 9));
-
     this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-
-    connect(qApp, SIGNAL(focusChanged(QWidget*,QWidget*)), this, SLOT(onFocusChanged(QWidget *,QWidget*)));
+    connect(qApp, &QApplication::focusChanged, this, &DockingPaneTitleWidget::onFocusChanged);
 }
 
-void DockingPaneTitleWidget::resizeEvent(QResizeEvent *e)
+void DockingPaneTitleWidget::resizeEvent(QResizeEvent*)
 {
-    Q_UNUSED(e);
-
     this->setMinimumHeight(6+this->fontMetrics().height());
     this->setMaximumHeight(6+this->fontMetrics().height());
 }
 
-void DockingPaneTitleWidget::paintEvent(QPaintEvent* event)
+void DockingPaneTitleWidget::paintEvent(QPaintEvent*)
 {
-    Q_UNUSED(event);
-
     QPainter p(this);
     QRect drawnRect;
 
@@ -105,42 +96,36 @@ void DockingPaneTitleWidget::drawPattern(QPainter *p, int x, int y, int w, int h
     p->fillRect(x,((y+h)/2)-2,w, 5, QBrush(pixMap));
 }
 
-void DockingPaneTitleWidget::mouseMoveEvent(QMouseEvent *e)
+void DockingPaneTitleWidget::mouseMoveEvent(QMouseEvent* event)
 {
-    emit titleBarMoved(this->mapToGlobal(e->pos()));
+    Q_EMIT titleBarMoved(this->mapToGlobal(event->pos()));
 }
 
-void DockingPaneTitleWidget::mouseReleaseEvent(QMouseEvent *e)
+void DockingPaneTitleWidget::mouseReleaseEvent(QMouseEvent* event)
 {
-    if (e->button() == Qt::LeftButton) {
-        emit titleBarEndMove(this->mapToGlobal(e->pos()));
-
-        e->accept();
+    if (event->button() == Qt::LeftButton) {
+        Q_EMIT titleBarEndMove(this->mapToGlobal(event->pos()));
+        event->accept();
     }
 }
 
-void DockingPaneTitleWidget::mousePressEvent(QMouseEvent *e)
+void DockingPaneTitleWidget::mousePressEvent(QMouseEvent* event)
 {
-    if (e->button() == Qt::LeftButton) {
+    if (event->button() == Qt::LeftButton) {
         this->setFocus();
-
-        e->accept();
-
-        emit titleBarStartMove(this->mapToGlobal(e->pos()));
+        event->accept();
+        Q_EMIT titleBarStartMove(this->mapToGlobal(event->pos()));
     }
 }
 
 void DockingPaneTitleWidget::setActive(bool active)
 {
     m_active = active;
-
     update();
 }
 
-void DockingPaneTitleWidget::onFocusChanged(QWidget *old,QWidget *now)
+void DockingPaneTitleWidget::onFocusChanged(QWidget*, QWidget *now)
 {
-    Q_UNUSED(old);
-
     setActive(this->isAncestorOf(now));
 }
 

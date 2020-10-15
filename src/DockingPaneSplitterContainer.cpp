@@ -17,10 +17,12 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "DockingPaneSplitterContainer.h"
-#include <QGridLayout>
 #include <QDomDocument>
 #include <QDebug>
+#include <QGridLayout>
+#include <QSplitter>
+
+#include "DockingPaneSplitterContainer.h"
 
 DockingPaneSplitterContainer::DockingPaneSplitterContainer(QWidget *parent, SplitterDirection direction) :
     DockingPaneBase(parent)
@@ -31,7 +33,6 @@ DockingPaneSplitterContainer::DockingPaneSplitterContainer(QWidget *parent, Spli
 
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
-
     layout->addWidget(m_splitterWidget);
 
     if (direction==splitVertical) {
@@ -54,10 +55,8 @@ DockingPaneSplitterContainer::SplitterDirection DockingPaneSplitterContainer::di
     }
 }
 
-void DockingPaneSplitterContainer::saveLayout(QDomNode *parentNode, bool includeGeometry)
+void DockingPaneSplitterContainer::saveLayout(QDomNode *parentNode, bool)
 {
-    Q_UNUSED(includeGeometry);
-
     QDomDocument doc = parentNode->ownerDocument();
 
     QDomElement domElement = doc.createElement(this->metaObject()->className());

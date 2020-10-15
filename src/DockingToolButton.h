@@ -37,19 +37,15 @@ class DockingToolButton : public QPushButton
             unpinButtonInactive
         };
 
-    public:
-        explicit DockingToolButton(ButtonType type, QWidget *parent = 0);
+        explicit DockingToolButton(ButtonType type, QWidget* parent = nullptr);
+        virtual ~DockingToolButton() = default;
         void setButton(DockingToolButton::ButtonType type);
 
     protected:
-        virtual void paintEvent(QPaintEvent* event);
-        virtual void enterEvent(QEvent * event);
-        virtual void leaveEvent(QEvent * event);
+        virtual void paintEvent(QPaintEvent* event) override;
+        virtual void enterEvent(QEvent* event) override;
+        virtual void leaveEvent(QEvent* event) override;
 
-    signals:
-        
-    public slots:
-        
     private:
         ButtonType m_buttonType;
         bool m_highlight;
