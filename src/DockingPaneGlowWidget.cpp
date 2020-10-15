@@ -29,7 +29,7 @@ DockingPaneGlowWidget::DockingPaneGlowWidget(QWidget *floatingPane, DockingPaneG
     m_position(pos),
     m_dragging(false)
 {
-    setWindowFlags(Qt::Tool | Qt::FramelessWindowHint);
+    setWindowFlags(Qt::ToolTip | Qt::FramelessWindowHint);
 
     this->setFocusPolicy(Qt::StrongFocus);
     this->setFocusProxy(floatingPane);
