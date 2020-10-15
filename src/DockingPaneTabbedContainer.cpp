@@ -33,8 +33,11 @@
 #include <QVBoxLayout>
 
 #include "DockingPaneFlyoutWidget.h"
+#include "DockingPaneGlow.h"
 #include "DockingPaneManager.h"
 #include "DockingPaneTabbedContainer.h"
+#include "DockingPaneTitleWidget.h"
+#include "DockingToolButton.h"
 
 DockingPaneTabbedContainer::DockingPaneTabbedContainer(QWidget *parent) :
     DockingPaneContainer(parent)
@@ -708,7 +711,7 @@ void DockingPaneTabbedContainer::onMoveDragTitle(QPoint pos)
 
 DockingPaneFlyoutWidget *DockingPaneTabbedContainer::openFlyout(bool hasFocus, QWidget *parent, FlyoutPosition pos, DockingPaneContainer *pane)
 {
-    m_flyoutWidget = new DockingPaneFlyoutWidget(hasFocus, parent->rect(), this, pane, (DockingPaneFlyoutWidget::FlyoutPosition) pos,  m_stackedWidget->widget(m_paneList.indexOf(pane)), parent);
+    m_flyoutWidget = new DockingPaneFlyoutWidget(hasFocus, this, pane, (DockingPaneFlyoutWidget::FlyoutPosition) pos,  m_stackedWidget->widget(m_paneList.indexOf(pane)), parent);
 
     connect(m_flyoutWidget, &DockingPaneFlyoutWidget::unpinContainer, this, &DockingPaneTabbedContainer::onUnpinContainer);
     connect(m_flyoutWidget, &DockingPaneFlyoutWidget::closeContainer, this, &DockingPaneTabbedContainer::onCloseContainer);
