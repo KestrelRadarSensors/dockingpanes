@@ -10,6 +10,8 @@
 #include "DockingPaneBase.h"
 #include "DockingPaneFlyoutWidget.h"
 #include <QApplication>
+#include <QSplitter>
+
 /*
  * This file is part of DockingPanes. (https://github.com/KestrelRadarSensors/dockingpanes)
  *

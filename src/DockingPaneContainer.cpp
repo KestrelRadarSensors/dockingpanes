@@ -53,7 +53,7 @@ DockingPaneContainer::DockingPaneContainer(QString title, QString id, QWidget *p
 
     m_floatingGlow = nullptr;
 
-    setWindowFlags(Qt::Tool | Qt::FramelessWindowHint);
+    setWindowFlags(Qt::ToolTip | Qt::FramelessWindowHint);
 
     m_headerWidget = new QWidget();
 
@@ -193,7 +193,7 @@ void DockingPaneContainer::floatPane(QRect)
 {
     this->setParent(dockingManager()->mainWindow());
 
-    setWindowFlags(Qt::Tool | Qt::FramelessWindowHint);
+    setWindowFlags(Qt::ToolTip | Qt::FramelessWindowHint);
 
     setState(DockingPaneBase::Floating);
 
@@ -213,7 +213,7 @@ void DockingPaneContainer::floatPane(QPoint pos)
 
     m_dockingManager->closePane(this);
 
-    setWindowFlags(Qt::Tool | Qt::FramelessWindowHint);
+    setWindowFlags(Qt::ToolTip | Qt::FramelessWindowHint);
 
     paneRect.translate(pos);
 

@@ -44,7 +44,7 @@ SOURCES += \
     DockingPaneClient.cpp \
     DockingPaneContainer.cpp \
     DockingPaneSplitterContainer.cpp \
-    DockAutoHidebutton.cpp \
+    DockAutoHideButton.cpp \
     DockingPaneTitleWidget.cpp \
     DockingToolButton.cpp \
     DockingFrameFrameSticker.cpp \
@@ -76,5 +76,5 @@ HEADERS += \
     DockingPaneGlow.h
 
 RESOURCES += \
-    images.qrc
+    resources/images.qrc
 

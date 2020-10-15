@@ -17,84 +17,77 @@
  * along with DockingPanes.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "DockingToolButton.h"
-#include <QPainter>
-#include <QImage>
 #include <QDebug>
+#include <QImage>
+#include <QPainter>
 #include <QPaintEvent>
+
+#include "DockingToolButton.h"
 
 DockingToolButton::DockingToolButton(DockingToolButton::ButtonType type, QWidget *parent) :
     QPushButton(parent)
 {
-    setMouseTracking( true );
+    setMouseTracking(true);
 
     m_buttonType = type;
     m_highlight = false;
 }
 
-void DockingToolButton::enterEvent(QEvent * event)
+void DockingToolButton::enterEvent(QEvent* event)
 {
     m_highlight = true;
 
     QPushButton::enterEvent(event);
 }
 
-void DockingToolButton::leaveEvent(QEvent * event)
+void DockingToolButton::leaveEvent(QEvent* event)
 {
     m_highlight = false;
 
     QPushButton::leaveEvent(event);
 }
 
-void DockingToolButton::paintEvent(QPaintEvent* event)
+void DockingToolButton::paintEvent(QPaintEvent*)
 {
-    Q_UNUSED(event);
-    int centreX, centreY;
     QImage buttonImage;
     QPainter p(this);
 
-    centreX = width()/2;
-    centreY = height()/2;
+    int centreX = width()/2;
+    int centreY = height()/2;
 
     p.setRenderHint(QPainter::Antialiasing, true);
     p.setRenderHint(QPainter::HighQualityAntialiasing, true);
 
     switch(m_buttonType) {
         case closeButtonInactive: {
-             buttonImage.load(":/close_inactive.png");
-
+             buttonImage.load(":/img/tool_button_bitmaps/close_inactive.png");
              break;
         }
 
         case closeButtonActive: {
-             buttonImage.load(":/close_active.png");
-
+             buttonImage.load(":/img/tool_button_bitmaps/close_active.png");
              break;
         }
 
         case pinButtonInactive: {
-             buttonImage.load(":/pin_inactive.png");
-
+             buttonImage.load(":/img/tool_button_bitmaps/pin_inactive.png");
              break;
         }
 
         case pinButtonActive: {
-             buttonImage.load(":/pin_active.png");
-
+             buttonImage.load(":/img/tool_button_bitmaps/pin_active.png");
              break;
         }
 
         case unpinButtonInactive: {
-             buttonImage.load(":/pin_inactive.png");
+             buttonImage.load(":/img/tool_button_bitmaps/pin_inactive.png");
              buttonImage = buttonImage.transformed(QTransform().rotate(90));
-
              break;
         }
 
         case unpinButtonActive: {
-             buttonImage.load(":/pin_active.png");
+             buttonImage.load(":/img/tool_button_bitmaps/pin_active.png");
              buttonImage = buttonImage.transformed(QTransform().rotate(90));
-
              break;
         }
     }
@@ -117,6 +110,5 @@ void DockingToolButton::paintEvent(QPaintEvent* event)
 void DockingToolButton::setButton(DockingToolButton::ButtonType type)
 {
     m_buttonType = type;
-
     update();
 }

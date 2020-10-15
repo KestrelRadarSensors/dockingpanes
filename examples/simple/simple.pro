@@ -39,8 +39,18 @@ FORMS += \
 INCLUDEPATH += \
         $$PWD/../../src
 
-CONFIG(debug, debug|release) {
-    LIBS += -L$$OUT_PWD/../../src/debug/ -lDockingPanesd
-} else {
-    LIBS += -L$$OUT_PWD/../../src/release/ -lDockingPanes
+win32 {
+    CONFIG(debug, debug|release) {
+        LIBS += -L$$OUT_PWD/../../src/debug/ -lDockingPanesd
+    } else {
+        LIBS += -L$$OUT_PWD/../../src/release/ -lDockingPanes
+    }
+}
+
+unix|macx {
+    CONFIG(debug, debug|release) {
+        LIBS += -L$$OUT_PWD/../../src/ -lDockingPanes
+    } else {
+        LIBS += -L$$OUT_PWD/../../src/ -lDockingPanes
+    }
 }
