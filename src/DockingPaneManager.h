@@ -110,7 +110,7 @@ class DOCKINGPANESSHARED_EXPORT DockingPaneManager : QObject
         void updateAllSplitters(DockingPaneSplitterContainer *parentSplitter=NULL, bool *containsClient=NULL);
         void updateFloatingPane(DockingPaneBase *currentPane, QPoint cursorPos);
 
-    private slots:
+    private Q_SLOTS:
         void onAutoDockButtonClicked(void);
         void onFocusChanged(QWidget *old, QWidget *now);
         void onFlyoutFocusLost(void);

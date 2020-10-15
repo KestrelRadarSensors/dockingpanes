@@ -35,6 +35,10 @@ target_wrapper.*
 *.pro.*
 *.h.*
 
-# build/ directory
+# build directories
+_build/
 build/
 
+# install directories
+_install/
+install

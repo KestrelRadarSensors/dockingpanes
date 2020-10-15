@@ -18,9 +18,40 @@ The library has only been tested under windows and may require tweaking of drawi
 
 ## Compiling
 
+### qmake
 A qmake project file is provided to build the library, this allows the library to be build either inside QtCreator by opening the project or by using qmake from the command line and building native files for your build system.
 
 Debug builds of the library are suffixed with a per platform string to allow debug and release builds to exist side by side.
+
+### cmake
+
+A `CMakeLists.txt` file is provided on the root folder. The current options supported are:
+
+* `-DBUILD_SHARED_LIBS`: If `ON`, then the result will be a shared lib (`*.so`/`*.dll` file). If `OFF`, the result will be a static lib (`*.a`/`*.lib` file). By default is `ON`.
+* `-DBUILD_EXAMPLES`: If `ON`, It will build the applications inside `examples` folder. By default is `ON`.
+
+#### Example:
+```
+cd _build/
+cmake -DCMAKE_INSTALL_PREFIX=/your/desired/location -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release ..
+cmake --build . -j<number_of_cores>
+cmake --install .
+```
+
+Then, the directory `/your/desired/location` will be (on linux):
+```
+.
+├── bin
+│   └── simple
+├── include
+│   └── dockingpanes
+│       └── DockingPaneManager.h
+└── lib
+    ├── libdockingpanes.so -> libdockingpanes.so.1
+    ├── libdockingpanes.so.1 -> libdockingpanes.so.1.0.0
+    └── libdockingpanes.so.1.0.0
+
+```
 
 ## Documentation
 

@@ -1,0 +1,21 @@
+target_sources(dockingpanes
+    PRIVATE
+        DockAutoHideButton.cpp
+        DockingFrameFrameSticker.cpp
+        DockingFrameStickers.cpp
+        DockingPaneBase.cpp
+        DockingPaneClient.cpp
+        DockingPaneContainer.cpp
+        DockingPaneFlyoutWidget.cpp
+        DockingPaneGlow.cpp
+        DockingPaneGlowWidget.cpp
+        DockingPaneManager.cpp
+        DockingPaneSplitterContainer.cpp
+        DockingPaneTabbedContainer.cpp
+        DockingPaneTabWidget.cpp
+        DockingPaneTitleWidget.cpp
+        DockingTargetWidget.cpp
+        DockingToolButton.cpp
+        # Resouces (needs autorcc)
+        resources/images.qrc
+)
